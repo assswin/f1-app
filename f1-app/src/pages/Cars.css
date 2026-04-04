@@ -1,0 +1,225 @@
+/* ═══════════════════════════════════════
+   CARS / CONSTRUCTORS PAGE — ENHANCED
+   ═══════════════════════════════════════ */
+
+.cars-page {
+  position: relative;
+  overflow: hidden;
+}
+
+.cars-bg-text {
+  position: absolute;
+  top: 60px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 16rem;
+  font-weight: 900;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.015);
+  white-space: nowrap;
+  pointer-events: none;
+  z-index: 0;
+  will-change: transform;
+}
+
+.cars-container {
+  display: flex;
+  flex-direction: column;
+  gap: 60px;
+  position: relative;
+  z-index: 1;
+}
+
+.car-card {
+  display: flex;
+  overflow: hidden;
+  position: relative;
+  perspective: 1000px;
+}
+
+.car-card.reversed {
+  flex-direction: row-reverse;
+}
+
+.car-card.reversed .team-color-bar {
+  right: auto;
+  left: 0;
+}
+
+.car-image-wrapper {
+  flex: 0 0 50%;
+  position: relative;
+  min-height: 320px;
+  overflow: hidden;
+}
+
+.car-image-wrapper img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  position: absolute;
+  top: 0;
+  left: 0;
+  transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.image-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(0,0,0,0.4) 0%, transparent 60%);
+  z-index: 1;
+}
+
+.team-color-bar {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  width: 5px;
+  z-index: 2;
+}
+
+.team-color-glow {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  opacity: 0.15;
+  filter: blur(30px);
+  z-index: 2;
+}
+
+/* Details */
+.car-details {
+  flex: 1;
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 8px;
+}
+
+.team-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 14px;
+  border: 1px solid;
+  border-radius: 20px;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  width: fit-content;
+}
+
+.team-color-circle {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+}
+
+.car-details h2 {
+  font-size: 2rem;
+  margin-top: 8px;
+}
+
+.car-specs {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+  color: #ccc;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.car-specs span {
+  background: rgba(255, 255, 255, 0.04);
+  padding: 8px 14px;
+  border-radius: 6px;
+  border: 1px solid rgba(255,255,255,0.06);
+}
+
+/* Telemetry */
+.telemetry {
+  margin: 10px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.tele-row {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.tele-row label {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.75rem;
+  color: #ccc;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.tele-row label span {
+  font-weight: 800;
+  color: white;
+}
+
+.tele-bar {
+  width: 100%;
+  height: 4px;
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.tele-fill {
+  height: 100%;
+  border-radius: 2px;
+  box-shadow: 0 0 10px currentColor;
+}
+
+.car-details p {
+  font-size: 1.05rem;
+  line-height: 1.7;
+  color: #999;
+  margin-top: 8px;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  .car-card,
+  .car-card.reversed {
+    flex-direction: column;
+  }
+
+  .car-image-wrapper {
+    min-height: 250px;
+  }
+
+  .team-color-bar {
+    width: 100%;
+    height: 4px;
+    top: auto;
+    bottom: 0;
+    right: 0;
+  }
+
+  .car-card.reversed .team-color-bar {
+    left: 0;
+  }
+
+  .cars-bg-text {
+    font-size: 6rem;
+  }
+
+  .car-details h2 {
+    font-size: 1.5rem;
+  }
+}
