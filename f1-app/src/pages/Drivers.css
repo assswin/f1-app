@@ -265,6 +265,45 @@
   color: #bbb;
 }
 
+.modal-advanced-stats {
+  display: flex;
+  gap: 15px;
+  margin-bottom: 25px;
+}
+
+.stat-box {
+  flex: 1;
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 10px;
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  transition: transform 0.3s ease, background 0.3s ease;
+}
+
+.stat-box:hover {
+  transform: translateY(-5px);
+  background: rgba(255,255,255,0.07);
+}
+
+.stat-box h4 {
+  font-size: 1.8rem;
+  font-weight: 800;
+  margin: 10px 0 2px;
+  color: white;
+}
+
+.stat-box span {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  color: #888;
+  letter-spacing: 1px;
+}
+
 @media (max-width: 768px) {
   .drivers-bg-text {
     font-size: 5rem;

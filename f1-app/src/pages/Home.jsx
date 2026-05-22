@@ -2,7 +2,8 @@ import { useRef } from 'react';
 import { motion, useScroll, useTransform, useInView } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { ChevronRight, Zap, Flag, Users, Award } from 'lucide-react';
-import { constructors, drivers } from '../data/f1Data';
+import { constructors, drivers, schedule } from '../data/f1Data';
+import CountdownTimer from '../components/CountdownTimer';
 import './Home.css';
 
 /* ── reusable scroll-reveal wrapper ── */
@@ -142,6 +143,11 @@ const Home = () => {
           >
             Experience the thrill, the speed, and the engineering marvels of Formula 1.
           </motion.p>
+
+          <CountdownTimer 
+            targetDate={schedule[0].dateObj} 
+            eventName={schedule[0].grandPrix} 
+          />
 
           <motion.div
             initial={{ y: 50, opacity: 0 }}

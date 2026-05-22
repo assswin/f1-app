@@ -2,6 +2,7 @@ import { useRef } from 'react';
 import { motion, useScroll, useTransform, useInView } from 'framer-motion';
 import { MapPin, Calendar, CheckCircle } from 'lucide-react';
 import { schedule } from '../data/f1Data';
+import CountdownTimer from '../components/CountdownTimer';
 import './Schedule.css';
 
 /* ── animation variants ── */
@@ -42,14 +43,8 @@ const Schedule = () => {
         2026 Race Calendar
       </motion.h1>
 
-      <div className="countdown-panel glass-panel">
-        <h2>Next Race</h2>
-        <div className="countdown-timer">
-          <div className="time-box"><span>14</span><label>DAYS</label></div>
-          <div className="time-box"><span>08</span><label>HOURS</label></div>
-          <div className="time-box"><span>45</span><label>MINUTES</label></div>
-        </div>
-        <div className="next-race-info">Bahrain International Circuit</div>
+      <div className="schedule-next-race-wrapper">
+        <CountdownTimer targetDate={schedule[0].dateObj} eventName={schedule[0].grandPrix} />
       </div>
 
       <motion.div 
@@ -62,12 +57,18 @@ const Schedule = () => {
         {schedule.map((race) => (
           <motion.div key={race.id} className="race-card glass-panel" variants={listItem} whileHover={{ scale: 1.02, x: 10 }}>
             <div className="race-round">RND<br/><span>{race.round}</span></div>
+            
+            <div className="race-image">
+              <img src={race.image} alt={race.grandPrix} />
+            </div>
+
             <div className="race-details">
               <h2>{race.grandPrix}</h2>
               <div className="race-location">
                 <MapPin size={16} /> {race.circuit}
               </div>
             </div>
+            
             <div className="race-date">
               <Calendar size={18} />
               <span>{race.date}</span>

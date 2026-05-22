@@ -1,6 +1,6 @@
 import { useState, useRef } from 'react';
 import { motion, AnimatePresence, useScroll, useTransform, useInView } from 'framer-motion';
-import { Search, X, Flag, MapPin } from 'lucide-react';
+import { Search, X, Flag, MapPin, Trophy, Medal, Award } from 'lucide-react';
 import { drivers } from '../data/f1Data';
 import './Drivers.css';
 
@@ -186,6 +186,31 @@ const Drivers = () => {
                     <span>{selectedDriver.points} pts</span>
                   </div>
                 </div>
+                
+                {selectedDriver.stats && (
+                  <motion.div 
+                    className="modal-advanced-stats"
+                    initial={{ y: 20, opacity: 0 }}
+                    animate={{ y: 0, opacity: 1 }}
+                    transition={{ delay: 0.4 }}
+                  >
+                    <div className="stat-box">
+                      <Trophy size={20} color="#e6b800" />
+                      <h4>{selectedDriver.stats.wins}</h4>
+                      <span>Wins</span>
+                    </div>
+                    <div className="stat-box">
+                      <Medal size={20} color="#c0c0c0" />
+                      <h4>{selectedDriver.stats.podiums}</h4>
+                      <span>Podiums</span>
+                    </div>
+                    <div className="stat-box">
+                      <Award size={20} color="#ff3366" />
+                      <h4>{selectedDriver.stats.championships}</h4>
+                      <span>Titles</span>
+                    </div>
+                  </motion.div>
+                )}
                 <div className="bio">
                   <strong>Biography:</strong>
                   <p>{selectedDriver.bio}</p>
