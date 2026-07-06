@@ -20,6 +20,8 @@ const listItem = {
   visible: { opacity: 1, y: 0, transition: { type: 'spring', stiffness: 200, damping: 20 } },
 };
 
+import { schedule as localSchedule } from '../data/f1Data';
+
 const Schedule = () => {
   const [schedule, setSchedule] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -33,54 +35,27 @@ const Schedule = () => {
     const fetchAPI = async () => {
       setLoading(true);
       
-      const [apiData, resultsData] = await Promise.all([
-        getSchedule(2026),
-        getRaceResults(2026)
-      ]);
+      // Use the local schedule for 2026 since it contains the accurate simulated winners
+      // from updateSchedule.cjs, whereas the external API might be outdated or out of sync.
       
-      const mappedSchedule = apiData.map((race) => {
-        const raceDateStr = race.time ? `${race.date}T${race.time}` : `${race.date}T00:00:00Z`;
-        const raceDateObj = new Date(raceDateStr);
-        const isPast = raceDateObj < new Date();
-        
-        let winner = null;
-        if (isPast) {
-          const raceResult = resultsData.find(r => r.round === race.round);
-          if (raceResult && raceResult.Results && raceResult.Results.length > 0) {
-            const firstPlace = raceResult.Results[0].Driver;
-            winner = `${firstPlace.givenName} ${firstPlace.familyName}`;
-          }
-        }
-        
+      const mappedSchedule = localSchedule.map((race) => {
         return {
-          id: race.round,
+          id: race.id,
           round: race.round,
-          grandPrix: race.raceName,
-          circuit: race.Circuit.circuitName,
+          grandPrix: race.grandPrix,
+          circuit: race.circuit,
           date: race.date,
-          dateObj: raceDateObj,
-          status: isPast ? 'finished' : 'upcoming',
-          winner: winner,
-          image: (() => {
-            const overrideMap = {
-              'silverstone': 'Great Britain',
-              'yas_marina': 'Abu Dhabi',
-              'americas': 'United States',
-              'vegas': 'Las Vegas',
-              'miami': 'Miami',
-              'imola': 'Emilia Romagna'
-            };
-            const circuitId = race.Circuit.circuitId;
-            const mappedCountry = overrideMap[circuitId] || race.Circuit.Location.country;
-            return encodeURI(`https://media.formula1.com/image/upload/f_auto/q_auto/v1677244985/content/dam/fom-website/2018-redesign-assets/Track icons 4x3/${mappedCountry}.png?v=2`);
-          })(),
-          sessions: {
-            p1: race.FirstPractice ? new Date(race.FirstPractice.time ? `${race.FirstPractice.date}T${race.FirstPractice.time}` : `${race.FirstPractice.date}T00:00:00Z`) : null,
-            p2: race.SecondPractice ? new Date(race.SecondPractice.time ? `${race.SecondPractice.date}T${race.SecondPractice.time}` : `${race.SecondPractice.date}T00:00:00Z`) : null,
-            p3: race.ThirdPractice ? new Date(race.ThirdPractice.time ? `${race.ThirdPractice.date}T${race.ThirdPractice.time}` : `${race.ThirdPractice.date}T00:00:00Z`) : null,
-            qualifying: race.Qualifying ? new Date(race.Qualifying.time ? `${race.Qualifying.date}T${race.Qualifying.time}` : `${race.Qualifying.date}T00:00:00Z`) : null,
-            race: raceDateObj
-          }
+          dateObj: new Date(race.dateObj),
+          status: race.status,
+          winner: race.winner,
+          image: race.image,
+          sessions: race.sessions ? {
+            p1: race.sessions.p1 ? new Date(race.sessions.p1) : null,
+            p2: race.sessions.p2 ? new Date(race.sessions.p2) : null,
+            p3: race.sessions.p3 ? new Date(race.sessions.p3) : null,
+            qualifying: race.sessions.qualifying ? new Date(race.sessions.qualifying) : null,
+            race: new Date(race.sessions.race)
+          } : null
         };
       });
 
