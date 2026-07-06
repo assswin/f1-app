@@ -1,0 +1,686 @@
+[
+  {
+    "year": 2025,
+    "champion": "Lando Norris",
+    "championTeam": "McLaren",
+    "championPoints": "425",
+    "rival": "Max Verstappen",
+    "rivalTeam": "Red Bull",
+    "rivalPoints": "412"
+  },
+  {
+    "year": 2024,
+    "champion": "Max Verstappen",
+    "championTeam": "Red Bull",
+    "championPoints": "437",
+    "rival": "Lando Norris",
+    "rivalTeam": "McLaren",
+    "rivalPoints": "374"
+  },
+  {
+    "year": 2023,
+    "champion": "Max Verstappen",
+    "championTeam": "Red Bull",
+    "championPoints": "575",
+    "rival": "Sergio Perez",
+    "rivalTeam": "Red Bull",
+    "rivalPoints": "285"
+  },
+  {
+    "year": 2022,
+    "champion": "Max Verstappen",
+    "championTeam": "Red Bull",
+    "championPoints": "454",
+    "rival": "Charles Leclerc",
+    "rivalTeam": "Ferrari",
+    "rivalPoints": "308"
+  },
+  {
+    "year": 2021,
+    "champion": "Max Verstappen",
+    "championTeam": "Red Bull",
+    "championPoints": "395.5",
+    "rival": "Lewis Hamilton",
+    "rivalTeam": "Mercedes",
+    "rivalPoints": "387.5"
+  },
+  {
+    "year": 2020,
+    "champion": "Lewis Hamilton",
+    "championTeam": "Mercedes",
+    "championPoints": "347",
+    "rival": "Valtteri Bottas",
+    "rivalTeam": "Mercedes",
+    "rivalPoints": "223"
+  },
+  {
+    "year": 2019,
+    "champion": "Lewis Hamilton",
+    "championTeam": "Mercedes",
+    "championPoints": "413",
+    "rival": "Valtteri Bottas",
+    "rivalTeam": "Mercedes",
+    "rivalPoints": "326"
+  },
+  {
+    "year": 2018,
+    "champion": "Lewis Hamilton",
+    "championTeam": "Mercedes",
+    "championPoints": "408",
+    "rival": "Sebastian Vettel",
+    "rivalTeam": "Ferrari",
+    "rivalPoints": "320"
+  },
+  {
+    "year": 2017,
+    "champion": "Lewis Hamilton",
+    "championTeam": "Mercedes",
+    "championPoints": "363",
+    "rival": "Sebastian Vettel",
+    "rivalTeam": "Ferrari",
+    "rivalPoints": "317"
+  },
+  {
+    "year": 2016,
+    "champion": "Nico Rosberg",
+    "championTeam": "Mercedes",
+    "championPoints": "385",
+    "rival": "Lewis Hamilton",
+    "rivalTeam": "Mercedes",
+    "rivalPoints": "380"
+  },
+  {
+    "year": 2015,
+    "champion": "Lewis Hamilton",
+    "championTeam": "Mercedes",
+    "championPoints": "381",
+    "rival": "Nico Rosberg",
+    "rivalTeam": "Mercedes",
+    "rivalPoints": "322"
+  },
+  {
+    "year": 2014,
+    "champion": "Lewis Hamilton",
+    "championTeam": "Mercedes",
+    "championPoints": "384",
+    "rival": "Nico Rosberg",
+    "rivalTeam": "Mercedes",
+    "rivalPoints": "317"
+  },
+  {
+    "year": 2013,
+    "champion": "Sebastian Vettel",
+    "championTeam": "Red Bull",
+    "championPoints": "397",
+    "rival": "Fernando Alonso",
+    "rivalTeam": "Ferrari",
+    "rivalPoints": "242"
+  },
+  {
+    "year": 2012,
+    "champion": "Sebastian Vettel",
+    "championTeam": "Red Bull",
+    "championPoints": "281",
+    "rival": "Fernando Alonso",
+    "rivalTeam": "Ferrari",
+    "rivalPoints": "278"
+  },
+  {
+    "year": 2011,
+    "champion": "Sebastian Vettel",
+    "championTeam": "Red Bull",
+    "championPoints": "392",
+    "rival": "Jenson Button",
+    "rivalTeam": "McLaren",
+    "rivalPoints": "270"
+  },
+  {
+    "year": 2010,
+    "champion": "Sebastian Vettel",
+    "championTeam": "Red Bull",
+    "championPoints": "256",
+    "rival": "Fernando Alonso",
+    "rivalTeam": "Ferrari",
+    "rivalPoints": "252"
+  },
+  {
+    "year": 2009,
+    "champion": "Jenson Button",
+    "championTeam": "Brawn",
+    "championPoints": "95",
+    "rival": "Sebastian Vettel",
+    "rivalTeam": "Red Bull",
+    "rivalPoints": "84"
+  },
+  {
+    "year": 2008,
+    "champion": "Lewis Hamilton",
+    "championTeam": "McLaren",
+    "championPoints": "98",
+    "rival": "Felipe Massa",
+    "rivalTeam": "Ferrari",
+    "rivalPoints": "97"
+  },
+  {
+    "year": 2007,
+    "champion": "Kimi Räikkönen",
+    "championTeam": "Ferrari",
+    "championPoints": "110",
+    "rival": "Lewis Hamilton",
+    "rivalTeam": "McLaren",
+    "rivalPoints": "109"
+  },
+  {
+    "year": 2006,
+    "champion": "Fernando Alonso",
+    "championTeam": "Renault",
+    "championPoints": "134",
+    "rival": "Michael Schumacher",
+    "rivalTeam": "Ferrari",
+    "rivalPoints": "121"
+  },
+  {
+    "year": 2005,
+    "champion": "Fernando Alonso",
+    "championTeam": "Renault",
+    "championPoints": "133",
+    "rival": "Kimi Räikkönen",
+    "rivalTeam": "McLaren",
+    "rivalPoints": "112"
+  },
+  {
+    "year": 2004,
+    "champion": "Michael Schumacher",
+    "championTeam": "Ferrari",
+    "championPoints": "148",
+    "rival": "Rubens Barrichello",
+    "rivalTeam": "Ferrari",
+    "rivalPoints": "114"
+  },
+  {
+    "year": 2003,
+    "champion": "Michael Schumacher",
+    "championTeam": "Ferrari",
+    "championPoints": "93",
+    "rival": "Kimi Räikkönen",
+    "rivalTeam": "McLaren",
+    "rivalPoints": "91"
+  },
+  {
+    "year": 2002,
+    "champion": "Michael Schumacher",
+    "championTeam": "Ferrari",
+    "championPoints": "144",
+    "rival": "Rubens Barrichello",
+    "rivalTeam": "Ferrari",
+    "rivalPoints": "77"
+  },
+  {
+    "year": 2001,
+    "champion": "Michael Schumacher",
+    "championTeam": "Ferrari",
+    "championPoints": "123",
+    "rival": "David Coulthard",
+    "rivalTeam": "McLaren",
+    "rivalPoints": "65"
+  },
+  {
+    "year": 2000,
+    "champion": "Michael Schumacher",
+    "championTeam": "Ferrari",
+    "championPoints": "108",
+    "rival": "Mika Häkkinen",
+    "rivalTeam": "McLaren",
+    "rivalPoints": "89"
+  },
+  {
+    "year": 1999,
+    "champion": "Mika Häkkinen",
+    "championTeam": "McLaren",
+    "championPoints": "76",
+    "rival": "Eddie Irvine",
+    "rivalTeam": "Ferrari",
+    "rivalPoints": "74"
+  },
+  {
+    "year": 1998,
+    "champion": "Mika Häkkinen",
+    "championTeam": "McLaren",
+    "championPoints": "100",
+    "rival": "Michael Schumacher",
+    "rivalTeam": "Ferrari",
+    "rivalPoints": "86"
+  },
+  {
+    "year": 1997,
+    "champion": "Jacques Villeneuve",
+    "championTeam": "Williams",
+    "championPoints": "81",
+    "rival": "Heinz-Harald Frentzen",
+    "rivalTeam": "Williams",
+    "rivalPoints": "42"
+  },
+  {
+    "year": 1996,
+    "champion": "Damon Hill",
+    "championTeam": "Williams",
+    "championPoints": "97",
+    "rival": "Jacques Villeneuve",
+    "rivalTeam": "Williams",
+    "rivalPoints": "78"
+  },
+  {
+    "year": 1995,
+    "champion": "Michael Schumacher",
+    "championTeam": "Benetton",
+    "championPoints": "102",
+    "rival": "Damon Hill",
+    "rivalTeam": "Williams",
+    "rivalPoints": "69"
+  },
+  {
+    "year": 1994,
+    "champion": "Michael Schumacher",
+    "championTeam": "Benetton",
+    "championPoints": "92",
+    "rival": "Damon Hill",
+    "rivalTeam": "Williams",
+    "rivalPoints": "91"
+  },
+  {
+    "year": 1993,
+    "champion": "Alain Prost",
+    "championTeam": "Williams",
+    "championPoints": "99",
+    "rival": "Ayrton Senna",
+    "rivalTeam": "McLaren",
+    "rivalPoints": "73"
+  },
+  {
+    "year": 1992,
+    "champion": "Nigel Mansell",
+    "championTeam": "Williams",
+    "championPoints": "108",
+    "rival": "Riccardo Patrese",
+    "rivalTeam": "Williams",
+    "rivalPoints": "56"
+  },
+  {
+    "year": 1991,
+    "champion": "Ayrton Senna",
+    "championTeam": "McLaren",
+    "championPoints": "96",
+    "rival": "Nigel Mansell",
+    "rivalTeam": "Williams",
+    "rivalPoints": "72"
+  },
+  {
+    "year": 1990,
+    "champion": "Ayrton Senna",
+    "championTeam": "McLaren",
+    "championPoints": "78",
+    "rival": "Alain Prost",
+    "rivalTeam": "Ferrari",
+    "rivalPoints": "71"
+  },
+  {
+    "year": 1989,
+    "champion": "Alain Prost",
+    "championTeam": "McLaren",
+    "championPoints": "76",
+    "rival": "Ayrton Senna",
+    "rivalTeam": "McLaren",
+    "rivalPoints": "60"
+  },
+  {
+    "year": 1988,
+    "champion": "Ayrton Senna",
+    "championTeam": "McLaren",
+    "championPoints": "90",
+    "rival": "Alain Prost",
+    "rivalTeam": "McLaren",
+    "rivalPoints": "87"
+  },
+  {
+    "year": 1987,
+    "champion": "Nelson Piquet",
+    "championTeam": "Williams",
+    "championPoints": "73",
+    "rival": "Nigel Mansell",
+    "rivalTeam": "Williams",
+    "rivalPoints": "61"
+  },
+  {
+    "year": 1986,
+    "champion": "Alain Prost",
+    "championTeam": "McLaren",
+    "championPoints": "72",
+    "rival": "Nigel Mansell",
+    "rivalTeam": "Williams",
+    "rivalPoints": "70"
+  },
+  {
+    "year": 1985,
+    "champion": "Alain Prost",
+    "championTeam": "McLaren",
+    "championPoints": "73",
+    "rival": "Michele Alboreto",
+    "rivalTeam": "Ferrari",
+    "rivalPoints": "53"
+  },
+  {
+    "year": 1984,
+    "champion": "Niki Lauda",
+    "championTeam": "McLaren",
+    "championPoints": "72",
+    "rival": "Alain Prost",
+    "rivalTeam": "McLaren",
+    "rivalPoints": "71.5"
+  },
+  {
+    "year": 1983,
+    "champion": "Nelson Piquet",
+    "championTeam": "Brabham",
+    "championPoints": "59",
+    "rival": "Alain Prost",
+    "rivalTeam": "Renault",
+    "rivalPoints": "57"
+  },
+  {
+    "year": 1982,
+    "champion": "Keke Rosberg",
+    "championTeam": "Williams",
+    "championPoints": "44",
+    "rival": "Didier Pironi",
+    "rivalTeam": "Ferrari",
+    "rivalPoints": "39"
+  },
+  {
+    "year": 1981,
+    "champion": "Nelson Piquet",
+    "championTeam": "Brabham",
+    "championPoints": "50",
+    "rival": "Carlos Reutemann",
+    "rivalTeam": "Williams",
+    "rivalPoints": "49"
+  },
+  {
+    "year": 1980,
+    "champion": "Alan Jones",
+    "championTeam": "Williams",
+    "championPoints": "67",
+    "rival": "Nelson Piquet",
+    "rivalTeam": "Brabham",
+    "rivalPoints": "54"
+  },
+  {
+    "year": 1979,
+    "champion": "Jody Scheckter",
+    "championTeam": "Ferrari",
+    "championPoints": "51",
+    "rival": "Gilles Villeneuve",
+    "rivalTeam": "Ferrari",
+    "rivalPoints": "47"
+  },
+  {
+    "year": 1978,
+    "champion": "Mario Andretti",
+    "championTeam": "Team Lotus",
+    "championPoints": "64",
+    "rival": "Ronnie Peterson",
+    "rivalTeam": "Team Lotus",
+    "rivalPoints": "51"
+  },
+  {
+    "year": 1977,
+    "champion": "Niki Lauda",
+    "championTeam": "Ferrari",
+    "championPoints": "70",
+    "rival": "Jody Scheckter",
+    "rivalTeam": "Wolf",
+    "rivalPoints": "55"
+  },
+  {
+    "year": 1976,
+    "champion": "James Hunt",
+    "championTeam": "McLaren",
+    "championPoints": "66",
+    "rival": "Niki Lauda",
+    "rivalTeam": "Ferrari",
+    "rivalPoints": "64"
+  },
+  {
+    "year": 1975,
+    "champion": "Niki Lauda",
+    "championTeam": "Ferrari",
+    "championPoints": "64.5",
+    "rival": "Emerson Fittipaldi",
+    "rivalTeam": "McLaren",
+    "rivalPoints": "45"
+  },
+  {
+    "year": 1974,
+    "champion": "Emerson Fittipaldi",
+    "championTeam": "McLaren",
+    "championPoints": "55",
+    "rival": "Clay Regazzoni",
+    "rivalTeam": "Ferrari",
+    "rivalPoints": "52"
+  },
+  {
+    "year": 1973,
+    "champion": "Jackie Stewart",
+    "championTeam": "Tyrrell",
+    "championPoints": "71",
+    "rival": "Emerson Fittipaldi",
+    "rivalTeam": "Team Lotus",
+    "rivalPoints": "55"
+  },
+  {
+    "year": 1972,
+    "champion": "Emerson Fittipaldi",
+    "championTeam": "Team Lotus",
+    "championPoints": "61",
+    "rival": "Jackie Stewart",
+    "rivalTeam": "Tyrrell",
+    "rivalPoints": "45"
+  },
+  {
+    "year": 1971,
+    "champion": "Jackie Stewart",
+    "championTeam": "Tyrrell",
+    "championPoints": "62",
+    "rival": "Ronnie Peterson",
+    "rivalTeam": "March-Ford",
+    "rivalPoints": "33"
+  },
+  {
+    "year": 1970,
+    "champion": "Jochen Rindt",
+    "championTeam": "Team Lotus",
+    "championPoints": "45",
+    "rival": "Jacky Ickx",
+    "rivalTeam": "Ferrari",
+    "rivalPoints": "40"
+  },
+  {
+    "year": 1969,
+    "champion": "Jackie Stewart",
+    "championTeam": "Matra-Ford",
+    "championPoints": "63",
+    "rival": "Jacky Ickx",
+    "rivalTeam": "Brabham-Ford",
+    "rivalPoints": "37"
+  },
+  {
+    "year": 1968,
+    "champion": "Graham Hill",
+    "championTeam": "Lotus-Ford",
+    "championPoints": "48",
+    "rival": "Jackie Stewart",
+    "rivalTeam": "Matra-Ford",
+    "rivalPoints": "36"
+  },
+  {
+    "year": 1967,
+    "champion": "Denny Hulme",
+    "championTeam": "Brabham-Repco",
+    "championPoints": "51",
+    "rival": "Jack Brabham",
+    "rivalTeam": "Brabham-Repco",
+    "rivalPoints": "48"
+  },
+  {
+    "year": 1966,
+    "champion": "Jack Brabham",
+    "championTeam": "Brabham-Repco",
+    "championPoints": "42",
+    "rival": "John Surtees",
+    "rivalTeam": "Ferrari",
+    "rivalPoints": "28"
+  },
+  {
+    "year": 1965,
+    "champion": "Jim Clark",
+    "championTeam": "Lotus-Climax",
+    "championPoints": "54",
+    "rival": "Graham Hill",
+    "rivalTeam": "BRM",
+    "rivalPoints": "40"
+  },
+  {
+    "year": 1964,
+    "champion": "John Surtees",
+    "championTeam": "Ferrari",
+    "championPoints": "40",
+    "rival": "Graham Hill",
+    "rivalTeam": "BRM",
+    "rivalPoints": "39"
+  },
+  {
+    "year": 1963,
+    "champion": "Jim Clark",
+    "championTeam": "Lotus-Climax",
+    "championPoints": "54",
+    "rival": "Graham Hill",
+    "rivalTeam": "BRM",
+    "rivalPoints": "29"
+  },
+  {
+    "year": 1962,
+    "champion": "Graham Hill",
+    "championTeam": "BRM",
+    "championPoints": "42",
+    "rival": "Jim Clark",
+    "rivalTeam": "Lotus-Climax",
+    "rivalPoints": "30"
+  },
+  {
+    "year": 1961,
+    "champion": "Phil Hill",
+    "championTeam": "Ferrari",
+    "championPoints": "34",
+    "rival": "Wolfgang von Trips",
+    "rivalTeam": "Ferrari",
+    "rivalPoints": "33"
+  },
+  {
+    "year": 1960,
+    "champion": "Jack Brabham",
+    "championTeam": "Cooper-Climax",
+    "championPoints": "43",
+    "rival": "Bruce McLaren",
+    "rivalTeam": "Cooper-Climax",
+    "rivalPoints": "34"
+  },
+  {
+    "year": 1959,
+    "champion": "Jack Brabham",
+    "championTeam": "Cooper-Climax",
+    "championPoints": "31",
+    "rival": "Tony Brooks",
+    "rivalTeam": "Ferrari",
+    "rivalPoints": "27"
+  },
+  {
+    "year": 1958,
+    "champion": "Mike Hawthorn",
+    "championTeam": "Ferrari",
+    "championPoints": "42",
+    "rival": "Stirling Moss",
+    "rivalTeam": "Cooper",
+    "rivalPoints": "41"
+  },
+  {
+    "year": 1957,
+    "champion": "Juan Fangio",
+    "championTeam": "Maserati",
+    "championPoints": "40",
+    "rival": "Stirling Moss",
+    "rivalTeam": "Maserati",
+    "rivalPoints": "25"
+  },
+  {
+    "year": 1956,
+    "champion": "Juan Fangio",
+    "championTeam": "Ferrari",
+    "championPoints": "30",
+    "rival": "Stirling Moss",
+    "rivalTeam": "Maserati",
+    "rivalPoints": "27"
+  },
+  {
+    "year": 1955,
+    "champion": "Juan Fangio",
+    "championTeam": "Mercedes",
+    "championPoints": "40",
+    "rival": "Stirling Moss",
+    "rivalTeam": "Mercedes",
+    "rivalPoints": "23"
+  },
+  {
+    "year": 1954,
+    "champion": "Juan Fangio",
+    "championTeam": "Maserati",
+    "championPoints": "42",
+    "rival": "José Froilán González",
+    "rivalTeam": "Ferrari",
+    "rivalPoints": "25.14"
+  },
+  {
+    "year": 1953,
+    "champion": "Alberto Ascari",
+    "championTeam": "Ferrari",
+    "championPoints": "34.5",
+    "rival": "Juan Fangio",
+    "rivalTeam": "Maserati",
+    "rivalPoints": "28"
+  },
+  {
+    "year": 1952,
+    "champion": "Alberto Ascari",
+    "championTeam": "Ferrari",
+    "championPoints": "36",
+    "rival": "Nino Farina",
+    "rivalTeam": "Ferrari",
+    "rivalPoints": "24"
+  },
+  {
+    "year": 1951,
+    "champion": "Juan Fangio",
+    "championTeam": "Alfa Romeo",
+    "championPoints": "31",
+    "rival": "Alberto Ascari",
+    "rivalTeam": "Ferrari",
+    "rivalPoints": "25"
+  },
+  {
+    "year": 1950,
+    "champion": "Nino Farina",
+    "championTeam": "Alfa Romeo",
+    "championPoints": "30",
+    "rival": "Juan Fangio",
+    "rivalTeam": "Alfa Romeo",
+    "rivalPoints": "27"
+  }
+]

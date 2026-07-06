@@ -182,8 +182,12 @@ const Drivers = () => {
                     <span>{selectedDriver.country}</span>
                   </div>
                   <div className="modal-stat">
+                    <Trophy size={16} color="var(--accent-red)" />
+                    <span>P{selectedDriver.position} (2026)</span>
+                  </div>
+                  <div className="modal-stat">
                     <Flag size={16} />
-                    <span>{selectedDriver.points} pts</span>
+                    <span>{selectedDriver.points} Pts</span>
                   </div>
                 </div>
                 
@@ -207,7 +211,12 @@ const Drivers = () => {
                     <div className="stat-box">
                       <Award size={20} color="#ff3366" />
                       <h4>{selectedDriver.stats.championships}</h4>
-                      <span>Titles</span>
+                      <span>WDC</span>
+                    </div>
+                    <div className="stat-box">
+                      <Flag size={20} color="#ffaa00" />
+                      <h4>{selectedDriver.stats.poles || 0}</h4>
+                      <span>Poles</span>
                     </div>
                   </motion.div>
                 )}

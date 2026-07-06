@@ -1,0 +1,57 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  build:
+    name: "Lint & Build"
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Get all test, doc and src files that have changed
+        id: changed-files-yaml
+        uses: tj-actions/changed-files@v45
+        with:
+          files_yaml: |
+            dbml:
+              - "**.dbml"
+            doc:
+              - "**.md"
+              - "docs/**"
+            src:
+              - "uv.lock"
+              - "pyproject.toml"
+              - "**.py"
+              - "tests/**"
+              - "jolpica/**"
+              - "jolpica_api/**"
+
+      - name: Setup Python
+        uses: astral-sh/setup-uv@v7
+        with:
+          version-file: "pyproject.toml"
+          python-version-file: "pyproject.toml"
+          activate-environment: true
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          cache: uv
+
+      - name: Install Dependencies & Activate Environment
+        run: |
+          uv sync --locked --no-group local
+
+      - name: Run Linting
+        run: |
+          uv run make lint
+
+      - name: Update DBDocs
+        if: ${{ github.ref_name == 'main' && steps.changed-files-yaml.outputs.dbml_any_changed == 'true' }}
+        env:
+          DBDOCS_TOKEN: ${{ secrets.DBDOCS_TOKEN }}
+        run: |
+          npx dbdocs build jolpica/formula_one/models/models.dbml --project "jolpica-f1" --public

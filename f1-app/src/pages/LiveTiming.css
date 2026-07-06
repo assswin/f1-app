@@ -1,0 +1,385 @@
+.live-timing-page {
+  padding-top: 80px;
+  min-height: 100vh;
+  background-color: #0d0d0d;
+  font-family: 'Titillium Web', sans-serif;
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+}
+
+.live-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 30px;
+  background: #111;
+  border-bottom: 1px solid #333;
+}
+
+.live-title {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.live-title h1 {
+  font-size: 1.8rem;
+  font-weight: 900;
+  margin: 0;
+  text-transform: uppercase;
+}
+
+.live-indicator {
+  background: var(--accent-red);
+  color: #fff;
+  padding: 4px 10px;
+  border-radius: 4px;
+  font-size: 0.75rem;
+  font-weight: 800;
+  letter-spacing: 1px;
+}
+
+.dashboard-layout {
+  display: grid;
+  grid-template-columns: 350px 1fr 350px;
+  gap: 15px;
+  flex: 1;
+  padding: 15px;
+  overflow: hidden;
+}
+
+/* Common Panel Styles */
+.panel {
+  background: #15151d;
+  border: 1px solid #2a2a35;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.panel-header {
+  padding: 15px;
+  background: #1c1c24;
+  border-bottom: 1px solid #2a2a35;
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: 0.9rem;
+  letter-spacing: 1px;
+  color: #aaa;
+}
+
+.panel-content {
+  flex: 1;
+  overflow-y: auto;
+  padding: 10px;
+}
+
+/* Standings Panel (Left) */
+.standings-list {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.driver-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px;
+  border-radius: 6px;
+  background: rgba(255, 255, 255, 0.03);
+  cursor: pointer;
+  border: 1px solid transparent;
+  transition: all 0.2s;
+}
+
+.driver-row:hover {
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.driver-row.selected {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+.driver-info-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.pos {
+  font-family: 'Outfit', monospace;
+  font-weight: 800;
+  font-size: 1.1rem;
+  width: 24px;
+  text-align: center;
+}
+
+.team-color-bar {
+  width: 4px;
+  height: 24px;
+  border-radius: 2px;
+}
+
+.name {
+  font-weight: 700;
+  font-size: 1.1rem;
+  text-transform: uppercase;
+}
+
+.driver-info-right {
+  text-align: right;
+  display: flex;
+  flex-direction: column;
+}
+
+.gap {
+  font-family: 'Outfit', monospace;
+  font-weight: 600;
+  font-size: 0.9rem;
+  color: #fff;
+}
+
+.status {
+  font-size: 0.75rem;
+  color: #aaa;
+  text-transform: uppercase;
+}
+
+/* Laps Panel (Center) */
+.lap-chart-container {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.lap-row {
+  background: rgba(0,0,0,0.3);
+  border-radius: 6px;
+  padding: 15px;
+  border: 1px solid #222;
+}
+
+.lap-header {
+  font-weight: 800;
+  color: #888;
+  margin-bottom: 10px;
+  font-size: 0.9rem;
+  border-bottom: 1px solid #333;
+  padding-bottom: 5px;
+}
+
+.lap-times {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+  gap: 10px;
+}
+
+.lap-time-card {
+  background: #1a1a24;
+  padding: 8px;
+  border-radius: 4px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: 'Outfit', monospace;
+  font-size: 0.9rem;
+}
+
+/* Pit Stops Panel (Right) */
+.pit-stop-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px;
+  border-bottom: 1px solid #222;
+}
+
+.pit-stop-item:last-child {
+  border-bottom: none;
+}
+
+.pit-driver {
+  font-weight: 700;
+  font-size: 1.1rem;
+}
+
+.pit-lap {
+  color: #888;
+  font-size: 0.85rem;
+}
+
+.pit-duration {
+  font-family: 'Outfit', monospace;
+  font-weight: 800;
+  color: var(--accent-red);
+}
+
+/* Custom Scrollbar for Panels */
+.panel-content::-webkit-scrollbar {
+  width: 6px;
+}
+.panel-content::-webkit-scrollbar-track {
+  background: rgba(0,0,0,0.2);
+}
+.panel-content::-webkit-scrollbar-thumb {
+  background: rgba(255,255,255,0.1);
+  border-radius: 3px;
+}
+.panel-content::-webkit-scrollbar-thumb:hover {
+  background: rgba(255,255,255,0.2);
+}
+
+.loading-spinner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  color: #888;
+  gap: 15px;
+}
+
+.spinner {
+  width: 40px;
+  height: 40px;
+  border: 4px solid rgba(255,255,255,0.1);
+  border-top-color: var(--accent-red);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* NEW: Session Selector */
+.session-selector {
+  background: #222;
+  color: #fff;
+  border: 1px solid #444;
+  padding: 6px 12px;
+  border-radius: 4px;
+  font-family: 'Outfit', monospace;
+  font-weight: 600;
+  outline: none;
+  cursor: pointer;
+  margin-left: 20px;
+}
+
+/* NEW: Right Panels Container */
+.right-panels-container {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  height: 100%;
+}
+
+.right-half-panel {
+  flex: 1;
+  min-height: 0; /* allows scrolling inside flex child */
+}
+
+/* NEW: Overtakes Feed */
+.overtakes-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.overtake-item {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 6px;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.overtake-lap {
+  font-size: 0.75rem;
+  color: #888;
+  text-transform: uppercase;
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+
+.overtake-drivers {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.attacker, .defender {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-weight: 800;
+  font-family: 'Outfit', monospace;
+  font-size: 1.1rem;
+}
+
+.defender {
+  color: #888;
+}
+
+.color-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+}
+
+.overtake-icon {
+  color: var(--accent-red);
+}
+
+.empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  color: #555;
+  gap: 10px;
+  font-weight: 600;
+  text-align: center;
+  padding: 20px;
+}
+
+/* Tailwind shims */
+.flex { display: flex; }
+.items-center { align-items: center; }
+.gap-2 { gap: 0.5rem; }
+.text-accent-red { color: var(--accent-red); }
+.absolute { position: absolute; }
+.inset-0 { top: 0; right: 0; bottom: 0; left: 0; }
+.justify-center { justify-content: center; }
+.bg-black\/50 { background-color: rgba(0,0,0,0.5); }
+.backdrop-blur { backdrop-filter: blur(4px); }
+.z-10 { z-index: 10; }
+.relative { position: relative; }
+
+@media (max-width: 1200px) {
+  .dashboard-layout {
+    grid-template-columns: 300px 1fr;
+    grid-template-rows: 1fr 1fr;
+  }
+  .panel:nth-child(3) {
+    grid-column: 1 / -1;
+  }
+}
+
+@media (max-width: 768px) {
+  .dashboard-layout {
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+  }
+  .panel {
+    min-height: 400px;
+  }
+}

@@ -1,0 +1,93 @@
+[project]
+    name = "jolpica"
+    version = "0.1.0"
+    description = "jolpica-f1 F1 API"
+    authors = [{ name = "jolpica", email = "no-reply@jolpi.ca" }]
+    requires-python = ">=3.12,<3.13"
+    dependencies = [
+        # Internal Packages
+        "jolpica-schemas",
+        # External Packages
+        "boto3~=1.40",
+        "Django>=5.2,<6.0",
+        "django-cors-headers~=4.4",
+        "django-environ~=0.12",
+        "django-ratelimit~=4.1",
+        "django-redis~=5.4",
+        "django-rest-knox~=5.0",
+        "django-storages~=1.14",
+        "django-timezone-field~=7.1",
+        "djangorestframework~=3.15",
+        "drf-spectacular~=0.28",
+        "gunicorn>=23,<24",
+        "uvicorn~=0.30",
+        "psycopg[binary]==3.2.10", # We suspect that newer versions are causing a crash after ~20 hours
+        "requests~=2.32",
+        "opentelemetry-sdk~=1.26",
+        "opentelemetry-exporter-otlp~=1.26",
+        "tzdata>=2025.2,<2027.0",
+]
+
+[dependency-groups]
+    dev = [
+        "django-dbml~=0.10",
+        "django-debug-toolbar~=5.0",
+        "django-stubs[compatible-mypy]~=5.1",
+        "djangorestframework-stubs[compatible-mypy]~=3.15",
+        "mypy[dmypy]~=1.10",
+        "pytest-django~=4.8",
+        "ruff~=0.5",
+        "tqdm~=4.66",
+        "prek>=0.2.13",
+        "types-requests>=2.33.0.20260408",
+]
+    local = ["ipykernel~=6.29"]
+
+[tool.uv]
+    required-version = "~=0.11.2"
+    default-groups = ["dev", "local"]
+
+    [tool.uv.sources]
+        jolpica-schemas = { workspace = true, editable = true }
+
+[tool.uv.workspace]
+members = [
+    "libraries/jolpica-schemas",
+]
+
+[tool.mypy]
+    exclude = ["tests/*", "^jolpica_api/ergastapi/*"]
+    plugins = ["mypy_django_plugin.main", "mypy_drf_plugin.main"]
+    python_version = "3.12"
+
+[tool.django-stubs]
+    django_settings_module = "jolpica_api.settings"
+
+[tool.ruff]
+    extend-exclude = ["**/migrations"]
+    line-length = 120
+    src = ["jolpica", "jolpica_api"]
+    target-version = "py312"
+
+    [tool.ruff.lint]
+        ignore = ["TRY300", "TRY003", "RUF012"]
+        isort.known-first-party = ["jolpica", "jolpica_api", "jolpica_schemas"]
+        select = [
+            "RUF", # Ruff specific
+            "I", # isort - Import sorting
+            "S", # Bandit - Security Report
+            "F", # Pyflakes - Error Checker
+            "E", # Pycodestyle - Style Checker
+            "UP", # Pyupgrade - Update Old Syntax
+            "N", # pep8-naming - Naming Conventions
+            "TRY", # Tryceratops - Try Except Checking
+        ]
+
+        pydocstyle.convention = "google"
+
+        [tool.ruff.lint.per-file-ignores]
+            "**/tests/*.py" = ["D", "S", "E501"]
+
+[tool.pytest.ini_options]
+    DJANGO_SETTINGS_MODULE = "tests.settings"
+    addopts = ["--reuse-db"]

@@ -22,6 +22,9 @@ const navLinks = [
   { to: '/schedule', label: 'Schedule' },
   { to: '/drivers', label: 'Drivers' },
   { to: '/car', label: 'Cars & Teams' },
+  { to: '/standings', label: 'Standings' },
+  { to: '/standings/history', label: 'History' },
+  { to: '/live', label: '🔴 LIVE TIMING' },
   { to: '/about', label: 'About Us' },
 ];
 
@@ -46,15 +49,20 @@ const Navbar = ({ isVideoMuted, setIsVideoMuted }) => {
     <>
       <nav className={scrolled ? 'scrolled' : ''}>
         <div className="container">
-          <Link to="/" className="logo">
-            <Trophy color="var(--accent-red)" size={28} />
-            <span>F1</span>Apex
+          <Link to="/" className="logo" style={{ display: 'flex', alignItems: 'center', gap: '8px', textDecoration: 'none' }}>
+            <img src="https://upload.wikimedia.org/wikipedia/commons/3/33/F1.svg" alt="F1 Logo" style={{ height: '26px' }} />
+            <span style={{ fontWeight: 900, color: '#fff', fontSize: '1.4rem', letterSpacing: '1px', textTransform: 'uppercase', fontFamily: "'Titillium Web', sans-serif" }}>Apex</span>
           </Link>
 
           {/* Desktop links */}
           <div className="nav-links">
             {navLinks.map((link) => (
-              <Link key={link.to} to={link.to} className={location.pathname === link.to ? 'active' : ''}>
+              <Link 
+                key={link.to} 
+                to={link.to} 
+                className={location.pathname === link.to ? 'active' : ''}
+                style={link.to === '/live' ? { color: 'var(--accent-red)', fontWeight: 800 } : {}}
+              >
                 {link.label}
               </Link>
             ))}

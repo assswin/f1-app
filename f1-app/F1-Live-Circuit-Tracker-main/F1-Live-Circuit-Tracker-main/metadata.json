@@ -1,0 +1,5 @@
+{
+  "name": "F1 Live Circuit Tracker",
+  "description": "A premium real-time Formula 1 dashboard featuring a live circuit map, driver telemetry, and race control feeds. Supports both live sessions and historical replays.",
+  "requestFramePermissions": []
+}
