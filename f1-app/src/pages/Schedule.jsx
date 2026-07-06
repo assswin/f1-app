@@ -34,10 +34,10 @@ const Schedule = () => {
   useEffect(() => {
     const fetchAPI = async () => {
       setLoading(true);
-      
+
       // Use the local schedule for 2026 since it contains the accurate simulated winners
       // from updateSchedule.cjs, whereas the external API might be outdated or out of sync.
-      
+
       const mappedSchedule = localSchedule.map((race) => {
         return {
           id: race.id,
@@ -76,7 +76,7 @@ const Schedule = () => {
   };
 
   if (loading) {
-    return <div className="schedule-page" style={{display: 'flex', justifyContent: 'center', paddingTop: '20vh'}}><div className="spinner"></div></div>;
+    return <div className="schedule-page" style={{ display: 'flex', justifyContent: 'center', paddingTop: '20vh' }}><div className="spinner"></div></div>;
   }
 
   const nextRace = schedule.find(race => race.dateObj > new Date()) || schedule[schedule.length - 1];
@@ -87,7 +87,7 @@ const Schedule = () => {
         CALENDAR
       </motion.div>
 
-      <motion.h1 
+      <motion.h1
         className="section-title"
         variants={titleVariants}
         initial="hidden"
@@ -103,7 +103,7 @@ const Schedule = () => {
         </div>
       )}
 
-      <motion.div 
+      <motion.div
         className="schedule-list"
         variants={listStagger}
         initial="hidden"
@@ -112,8 +112,8 @@ const Schedule = () => {
       >
         {schedule.map((race) => (
           <motion.div key={race.id} className="race-card glass-panel" variants={listItem} whileHover={{ scale: 1.02, x: 10 }}>
-            <div className="race-round">RND<br/><span>{race.round}</span></div>
-            
+            <div className="race-round">RND<br /><span>{race.round}</span></div>
+
             <div className="race-image">
               <img src={race.image} alt={race.grandPrix} onError={(e) => { e.target.onerror = null; e.target.src = '/assets/placeholder-track.png' }} />
             </div>
@@ -132,14 +132,14 @@ const Schedule = () => {
 
               {race.sessions && (
                 <div className="race-sessions-wrapper" style={{ marginTop: '15px' }}>
-                  <button 
+                  <button
                     onClick={() => toggleSessions(race.id)}
                     style={{ background: 'transparent', border: '1px solid #333', color: '#fff', display: 'flex', alignItems: 'center', gap: '8px', padding: '6px 12px', borderRadius: '4px', cursor: 'pointer', fontSize: '0.8rem', textTransform: 'uppercase', fontFamily: "'Titillium Web', sans-serif" }}
                   >
                     <Clock size={14} /> Full Weekend Schedule
                     {expandedRaceId === race.id ? <ChevronUp size={16} /> : <ChevronDown size={16} />}
                   </button>
-                  
+
                   {expandedRaceId === race.id && (
                     <div style={{ marginTop: '10px', background: 'rgba(0,0,0,0.3)', padding: '12px', borderRadius: '6px', fontSize: '0.85rem', display: 'flex', flexDirection: 'column', gap: '8px' }}>
                       {race.sessions.p1 && (
@@ -170,7 +170,7 @@ const Schedule = () => {
                 </div>
               )}
             </div>
-            
+
             <div className="race-date">
               <Calendar size={18} />
               <span>{new Date(race.date).toLocaleDateString()}</span>
