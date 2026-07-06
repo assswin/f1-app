@@ -39,7 +39,8 @@ const Schedule = () => {
       ]);
       
       const mappedSchedule = apiData.map((race) => {
-        const raceDateObj = new Date(`${race.date}T${race.time}`);
+        const raceDateStr = race.time ? `${race.date}T${race.time}` : `${race.date}T00:00:00Z`;
+        const raceDateObj = new Date(raceDateStr);
         const isPast = raceDateObj < new Date();
         
         let winner = null;
@@ -62,10 +63,10 @@ const Schedule = () => {
           winner: winner,
           image: `https://media.formula1.com/image/upload/f_auto/q_auto/v1677244985/content/dam/fom-website/2018-redesign-assets/Track%20icons%204x3/${race.Circuit.Location.country.replace(' ', '%20')}.png`,
           sessions: {
-            p1: race.FirstPractice ? new Date(`${race.FirstPractice.date}T${race.FirstPractice.time}`) : null,
-            p2: race.SecondPractice ? new Date(`${race.SecondPractice.date}T${race.SecondPractice.time}`) : null,
-            p3: race.ThirdPractice ? new Date(`${race.ThirdPractice.date}T${race.ThirdPractice.time}`) : null,
-            qualifying: race.Qualifying ? new Date(`${race.Qualifying.date}T${race.Qualifying.time}`) : null,
+            p1: race.FirstPractice ? new Date(race.FirstPractice.time ? `${race.FirstPractice.date}T${race.FirstPractice.time}` : `${race.FirstPractice.date}T00:00:00Z`) : null,
+            p2: race.SecondPractice ? new Date(race.SecondPractice.time ? `${race.SecondPractice.date}T${race.SecondPractice.time}` : `${race.SecondPractice.date}T00:00:00Z`) : null,
+            p3: race.ThirdPractice ? new Date(race.ThirdPractice.time ? `${race.ThirdPractice.date}T${race.ThirdPractice.time}` : `${race.ThirdPractice.date}T00:00:00Z`) : null,
+            qualifying: race.Qualifying ? new Date(race.Qualifying.time ? `${race.Qualifying.date}T${race.Qualifying.time}` : `${race.Qualifying.date}T00:00:00Z`) : null,
             race: raceDateObj
           }
         };
