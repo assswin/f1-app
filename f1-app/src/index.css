@@ -5,6 +5,14 @@
 @tailwind components;
 @tailwind utilities;
 
+@theme {
+  --color-background: var(--bg-color);
+  --color-surface: var(--panel-bg);
+  --color-primary: var(--accent-red);
+  --color-border: var(--panel-border);
+  --color-muted: #888888;
+}
+
 :root {
   --bg-color: #050505;
   --text-color: #ededed;
