@@ -5,22 +5,22 @@ import { TelemetryPanel } from './TelemetryPanel';
 
 export const DashboardLayout: React.FC = () => {
   return (
-    <div className="grid grid-cols-12 h-[calc(100vh-64px)] overflow-hidden">
-      {/* Left: Drivers (2 cols) */}
-      <div className="col-span-12 md:col-span-3 lg:col-span-2 h-full">
+    <div className="flex h-full w-full overflow-hidden">
+      {/* Left: Drivers */}
+      <div className="w-[300px] shrink-0 h-full border-r border-border bg-surface/30 overflow-y-auto">
         <DriverList />
       </div>
 
-      {/* Center: Circuit (7 cols) */}
-      <div className="col-span-12 md:col-span-6 lg:col-span-7 h-[50vh] md:h-full relative bg-neutral-950 border-x border-border">
+      {/* Center: Circuit */}
+      <div className="flex-1 min-w-0 h-full relative bg-neutral-950">
          {/* We use a ResizeObserver in a real app, strict dims here for MVP */}
-         <div className="absolute inset-0">
+         <div className="absolute inset-0 flex items-center justify-center">
              <CircuitMap width={800} height={600} />
          </div>
       </div>
 
-      {/* Right: Telemetry (3 cols) */}
-      <div className="col-span-12 md:col-span-3 lg:col-span-3 h-full">
+      {/* Right: Telemetry */}
+      <div className="w-[350px] shrink-0 h-full border-l border-border bg-surface/30">
         <TelemetryPanel />
       </div>
     </div>
