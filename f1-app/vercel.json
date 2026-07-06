@@ -1,6 +1,10 @@
 {
   "rewrites": [
     {
+      "source": "/api/openf1/:match*",
+      "destination": "https://api.openf1.org/v1/:match*"
+    },
+    {
       "source": "/(.*)",
       "destination": "/index.html"
     }

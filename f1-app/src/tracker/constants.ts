@@ -1,4 +1,4 @@
-export const API_BASE = 'https://api.openf1.org/v1';
+export const API_BASE = '/api/openf1';
 
 export const TEAM_COLORS: Record<string, string> = {
   'Red Bull Racing': '#3671C6',
