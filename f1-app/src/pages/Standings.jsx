@@ -75,16 +75,12 @@ const Standings = () => {
               </thead>
               <tbody>
                 {driverStandings.map(d => {
-                  const fullName = `${d.Driver.givenName} ${d.Driver.familyName}`;
-                  const localDriver = localDrivers.find(ld => ld.name === fullName);
-                  const driverImg = localDriver?.image || 'https://media.formula1.com/image/upload/f_auto,c_fill,q_auto,w_100/content/dam/fom-website/drivers/M/MAXVER01_Max_Verstappen/maxver01.png'; // fallback placeholder
                   const teamName = d.Constructors[0]?.name || '';
 
                   return (
                     <tr key={d.Driver.driverId}>
                       <td className="pos-col">{d.position}</td>
                       <td className="driver-name-col">
-                        <img src={driverImg} alt={fullName} className="driver-icon" />
                         <span className="given-name">{d.Driver.givenName}</span>
                         <strong className="family-name">{d.Driver.familyName}</strong>
                       </td>
