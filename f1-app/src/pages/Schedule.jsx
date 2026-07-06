@@ -61,7 +61,19 @@ const Schedule = () => {
           dateObj: raceDateObj,
           status: isPast ? 'finished' : 'upcoming',
           winner: winner,
-          image: `https://media.formula1.com/image/upload/f_auto/q_auto/v1677244985/content/dam/fom-website/2018-redesign-assets/Track%20icons%204x3/${race.Circuit.Location.country.replace(' ', '%20')}.png`,
+          image: (() => {
+            const overrideMap = {
+              'silverstone': 'Great Britain',
+              'yas_marina': 'Abu Dhabi',
+              'americas': 'United States',
+              'vegas': 'Las Vegas',
+              'miami': 'Miami',
+              'imola': 'Emilia Romagna'
+            };
+            const circuitId = race.Circuit.circuitId;
+            const mappedCountry = overrideMap[circuitId] || race.Circuit.Location.country;
+            return encodeURI(`https://media.formula1.com/image/upload/f_auto/q_auto/v1677244985/content/dam/fom-website/2018-redesign-assets/Track icons 4x3/${mappedCountry}.png?v=2`);
+          })(),
           sessions: {
             p1: race.FirstPractice ? new Date(race.FirstPractice.time ? `${race.FirstPractice.date}T${race.FirstPractice.time}` : `${race.FirstPractice.date}T00:00:00Z`) : null,
             p2: race.SecondPractice ? new Date(race.SecondPractice.time ? `${race.SecondPractice.date}T${race.SecondPractice.time}` : `${race.SecondPractice.date}T00:00:00Z`) : null,
