@@ -1,18 +1,24 @@
 import { getToken, clearToken } from "./auth";
 
-// All API calls use relative URLs (same-origin).
-export const API_URL = "";
+export const API_URL = import.meta.env.VITE_API_URL || "";
 
 export function apiUrl(path: string): string {
-  return path;
+  return `${API_URL}${path}`;
 }
 
 export function wsUrl(path: string): string {
-  const protocol = window.location.protocol === "https:" ? "wss:" : "ws:";
-  const base = `${protocol}//${window.location.host}`;
   const token = getToken();
   const separator = path.includes("?") ? "&" : "?";
   const tokenParam = token ? `${separator}token=${encodeURIComponent(token)}` : "";
+
+  if (API_URL) {
+    const protocol = API_URL.startsWith("https:") ? "wss:" : "ws:";
+    const host = API_URL.replace(/^https?:\/\//, "");
+    return `${protocol}//${host}${path}${tokenParam}`;
+  }
+
+  const protocol = window.location.protocol === "https:" ? "wss:" : "ws:";
+  const base = `${protocol}//${window.location.host}`;
   return `${base}${path}${tokenParam}`;
 }
 
