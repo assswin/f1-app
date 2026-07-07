@@ -1,4 +1,3 @@
-"use client";
 
 import { TYRE_COLORS, TYRE_SHORT } from "@/lib/constants";
 

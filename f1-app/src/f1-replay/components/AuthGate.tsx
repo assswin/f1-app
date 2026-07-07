@@ -1,4 +1,3 @@
-"use client";
 
 import { useState, useEffect, useCallback, FormEvent } from "react";
 import { apiUrl, API_URL } from "@/lib/api";

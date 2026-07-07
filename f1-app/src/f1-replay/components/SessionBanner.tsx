@@ -1,4 +1,3 @@
-"use client";
 
 import { useState, useRef, useEffect } from "react";
 import { ReplaySettings, DEFAULTS as DEFAULT_SETTINGS } from "@/hooks/useSettings";

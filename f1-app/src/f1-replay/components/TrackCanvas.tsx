@@ -1,4 +1,3 @@
-"use client";
 
 import { useRef, useEffect } from "react";
 import { drawTrack, drawDrivers, TrackPoint, DriverMarker, SectorOverlay, Corner, MarshalSector, SectorFlag, ELEVATION_FULL_SCALE_M } from "@/lib/trackRenderer";

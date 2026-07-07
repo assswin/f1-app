@@ -1,4 +1,3 @@
-"use client";
 
 import { useState } from "react";
 import { SPEED_OPTIONS } from "@/lib/constants";
