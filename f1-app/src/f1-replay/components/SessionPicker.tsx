@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useMemo, useEffect, useRef } from "react";
+import { useNavigate } from "react-router-dom";
 import { useApi } from "@/hooks/useApi";
 import { getToken } from "@/lib/auth";
 import { apiUrl } from "@/lib/api";
@@ -144,6 +145,7 @@ function StatusPill({ status }: { status: Event["status"] }) {
 
 export default function SessionPicker() {
   const currentYear = new Date().getFullYear();
+  const navigate = useNavigate();
   const [year, setYear] = useState(currentYear);
   const [selectedEvent, setSelectedEvent] = useState<Event | null>(null);
   const [selectedKey, setSelectedKey] = useState<string | null>(null);
@@ -385,8 +387,10 @@ export default function SessionPicker() {
                       href={href}
                       onClick={(e) => {
                         e.stopPropagation();
-                        if (suppressClickRef.current) { suppressClickRef.current = false; e.preventDefault(); return; }
+                        e.preventDefault();
+                        if (suppressClickRef.current) { suppressClickRef.current = false; return; }
                         setNavigating(true);
+                        navigate(href);
                       }}
                       onContextMenu={(e) => { e.preventDefault(); e.stopPropagation(); openMenu(e.clientX, e.clientY); }}
                       onTouchStart={(e) => {
@@ -433,7 +437,7 @@ export default function SessionPicker() {
   }
 
   return (
-    <div className="min-h-screen bg-f1-dark">
+    <div className="w-full pb-16 pt-4 bg-transparent">
       {/* Loading overlay */}
       {navigating && (
         <div className="fixed inset-0 bg-black/70 z-50 flex items-center justify-center">
@@ -452,7 +456,7 @@ export default function SessionPicker() {
           style={{ top: ctxMenu.y, left: ctxMenu.x }}
         >
           <button
-            onClick={() => { setNavigating(true); window.location.href = ctxMenu.href; }}
+            onClick={() => { setNavigating(true); navigate(ctxMenu.href); }}
             className="block w-full text-left px-4 py-2 text-white hover:bg-white/5 transition-colors"
           >
             Open
@@ -516,53 +520,10 @@ export default function SessionPicker() {
       )}
 
       {/* Header */}
-      <div className="bg-f1-card border-b border-f1-border">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 py-5 sm:py-8 flex items-center gap-3 sm:gap-4">
-          <img src="/logo.png" alt="F1 Replay" className="w-12 h-12 sm:w-[72px] sm:h-[72px] rounded-lg" />
-          <div className="flex-1 min-w-0">
-            <h1 className="text-xl sm:text-3xl font-bold text-white mb-0.5 sm:mb-1">F1 Replay Timing</h1>
-            <p className="text-f1-muted text-xs sm:text-base">Select a session to replay</p>
-          </div>
-          {/* Desktop: text buttons */}
-          <a
-            href="/features"
-            className="hidden sm:block px-4 py-2 bg-f1-border text-f1-muted text-sm font-bold rounded hover:text-white transition-colors"
-          >
-            Features
-          </a>
-          <a
-            href="/about"
-            className="hidden sm:block px-4 py-2 bg-f1-border text-f1-muted text-sm font-bold rounded hover:text-white transition-colors"
-          >
-            About
-          </a>
-          {/* Mobile: hamburger menu */}
-          <div className="relative sm:hidden" ref={menuRef}>
-            <button
-              onClick={() => setMenuOpen(!menuOpen)}
-              className="w-9 h-9 flex items-center justify-center rounded bg-f1-border text-f1-muted hover:text-white transition-colors"
-            >
-              <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                <path strokeLinecap="round" strokeLinejoin="round" d="M4 6h16M4 12h16M4 18h16" />
-              </svg>
-            </button>
-            {menuOpen && (
-              <div className="absolute right-0 top-11 w-40 bg-f1-card border border-f1-border rounded-lg shadow-xl z-50 py-1">
-                <a
-                  href="/features"
-                  className="block px-4 py-2.5 text-sm font-bold text-f1-muted hover:text-white hover:bg-white/5 transition-colors"
-                >
-                  Features
-                </a>
-                <a
-                  href="/about"
-                  className="block px-4 py-2.5 text-sm font-bold text-f1-muted hover:text-white hover:bg-white/5 transition-colors"
-                >
-                  About
-                </a>
-              </div>
-            )}
-          </div>
+      <div className="border-b border-white/10 mb-8">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 py-5 sm:py-8">
+          <h1 className="text-xl sm:text-3xl font-bold text-white mb-0.5 sm:mb-1">Live Timing & Replay</h1>
+          <p className="text-white/60 text-xs sm:text-base">Select a session to track telemetry and live positions</p>
         </div>
       </div>
 
@@ -596,8 +557,12 @@ export default function SessionPicker() {
               <div className="mb-8 max-w-3xl mx-auto">
                 <a
                   href={`/live?year=${liveSession.year}&round=${liveSession.round_number}&type=${liveSession.session_type}`}
-                  onClick={() => setNavigating(true)}
-                  className="block bg-f1-card border border-f1-red/50 rounded-xl overflow-hidden hover:border-f1-red transition-all group"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    setNavigating(true);
+                    navigate(`/live?year=${liveSession.year}&round=${liveSession.round_number}&type=${liveSession.session_type}`);
+                  }}
+                  className="block bg-black/40 border border-f1-red/50 rounded-xl overflow-hidden hover:border-f1-red transition-all group backdrop-blur-md"
                 >
                   <div className="px-4 py-4 flex items-center gap-4">
                     <div className="flex items-center gap-1.5 px-3 py-1.5 bg-red-600 rounded text-sm font-extrabold text-white uppercase flex-shrink-0">
