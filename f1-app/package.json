@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "dev:replay": "cd F1ReplayTiming-main/F1ReplayTiming-main && docker compose up",
+    "dev:replay": "cd F1ReplayTiming-main\\F1ReplayTiming-main\\backend && venv\\Scripts\\activate && set STATIC_DIR=..\\frontend\\out&& uvicorn main:app --host 0.0.0.0 --port 8000",
     "build": "vite build",
     "lint": "eslint .",
     "preview": "vite preview"
