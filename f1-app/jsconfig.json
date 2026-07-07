@@ -1,0 +1,1 @@
+{"compilerOptions":{"baseUrl":".","jsx":"react-jsx","paths":{"@/*":["src/f1-replay/*"]}},"include":["src"]}

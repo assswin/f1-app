@@ -24,6 +24,7 @@ const navLinks = [
   { to: '/car', label: 'Cars & Teams' },
   { to: '/standings', label: 'Standings' },
   { to: '/standings/history', label: 'History' },
+  { to: '/live', label: '🔴 LIVE TIMING' },
   { to: '/about', label: 'About Us' },
 ];
 

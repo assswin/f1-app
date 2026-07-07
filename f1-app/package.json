@@ -5,12 +5,13 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "dev:replay": "cd F1ReplayTiming-main\\F1ReplayTiming-main\\backend && venv\\Scripts\\activate && set STATIC_DIR=..\\frontend\\out&& uvicorn main:app --host 0.0.0.0 --port 8000",
+    "dev:replay": "cd backend && venv\\Scripts\\activate && set STATIC_DIR=..\\dist && uvicorn main:app --host 0.0.0.0 --port 8000",
     "build": "vite build",
     "lint": "eslint .",
     "preview": "vite preview"
   },
   "dependencies": {
+    "@microsoft/signalr": "^10.0.0",
     "clsx": "^2.1.1",
     "date-fns": "^4.4.0",
     "framer-motion": "^12.38.0",
