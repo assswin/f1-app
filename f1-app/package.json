@@ -5,6 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
+    "dev:replay": "cd F1ReplayTiming-main/F1ReplayTiming-main && docker compose up",
     "build": "vite build",
     "lint": "eslint .",
     "preview": "vite preview"
