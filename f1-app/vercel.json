@@ -1,8 +1,22 @@
 {
+  "builds": [
+    {
+      "src": "api/index.py",
+      "use": "@vercel/python"
+    },
+    {
+      "src": "package.json",
+      "use": "@vercel/vite"
+    }
+  ],
   "rewrites": [
     {
       "source": "/api/openf1/:match*",
       "destination": "https://api.openf1.org/v1/:match*"
+    },
+    {
+      "source": "/api/:match*",
+      "destination": "/api/index.py"
     },
     {
       "source": "/(.*)",
