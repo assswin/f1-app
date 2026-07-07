@@ -32,37 +32,68 @@ const Schedule = () => {
   const bgTextY = useTransform(scrollYProgress, [0, 1], [0, -200]);
 
   useEffect(() => {
-    const fetchAPI = async () => {
-      setLoading(true);
+    let isMounted = true;
+    let intervalId;
 
-      // Use the local schedule for 2026 since it contains the accurate simulated winners
-      // from updateSchedule.cjs, whereas the external API might be outdated or out of sync.
+    const fetchAPI = async (isInitial = false) => {
+      if (isInitial) setLoading(true);
 
-      const mappedSchedule = localSchedule.map((race) => {
-        return {
-          id: race.id,
-          round: race.round,
-          grandPrix: race.grandPrix,
-          circuit: race.circuit,
-          date: race.date,
-          dateObj: new Date(race.dateObj),
-          status: race.status,
-          winner: race.winner,
-          image: race.image,
-          sessions: race.sessions ? {
-            p1: race.sessions.p1 ? new Date(race.sessions.p1) : null,
-            p2: race.sessions.p2 ? new Date(race.sessions.p2) : null,
-            p3: race.sessions.p3 ? new Date(race.sessions.p3) : null,
-            qualifying: race.sessions.qualifying ? new Date(race.sessions.qualifying) : null,
-            race: new Date(race.sessions.race)
-          } : null
-        };
-      });
+      try {
+        // Fetch live results to see if any new races just finished
+        const liveResults = await getRaceResults('current');
 
-      setSchedule(mappedSchedule);
-      setLoading(false);
+        // Use the local schedule for 2026 since it contains the accurate simulated winners
+        // from updateSchedule.cjs, whereas the external API might be outdated or out of sync.
+        const mappedSchedule = localSchedule.map((race) => {
+          let winner = race.winner;
+          let status = race.status;
+
+          // Merge live results if available and newer than local simulated data
+          if (liveResults && liveResults.length > 0) {
+            const liveRace = liveResults.find(r => parseInt(r.round) === race.round);
+            if (liveRace && liveRace.Results && liveRace.Results.length > 0) {
+              const liveWinner = liveRace.Results[0].Driver;
+              // Format as First Last to match mock data style, or whatever is available
+              winner = `${liveWinner.givenName} ${liveWinner.familyName}`;
+              status = 'finished';
+            }
+          }
+
+          return {
+            id: race.id,
+            round: race.round,
+            grandPrix: race.grandPrix,
+            circuit: race.circuit,
+            date: race.date,
+            dateObj: new Date(race.dateObj),
+            status: status,
+            winner: winner,
+            image: race.image,
+            sessions: race.sessions ? {
+              p1: race.sessions.p1 ? new Date(race.sessions.p1) : null,
+              p2: race.sessions.p2 ? new Date(race.sessions.p2) : null,
+              p3: race.sessions.p3 ? new Date(race.sessions.p3) : null,
+              qualifying: race.sessions.qualifying ? new Date(race.sessions.qualifying) : null,
+              race: new Date(race.sessions.race)
+            } : null
+          };
+        });
+
+        if (isMounted) setSchedule(mappedSchedule);
+      } catch (error) {
+        console.error("Failed to fetch schedule updates:", error);
+      } finally {
+        if (isMounted && isInitial) setLoading(false);
+      }
     };
-    fetchAPI();
+
+    fetchAPI(true);
+    intervalId = setInterval(() => fetchAPI(false), 30000);
+
+    return () => {
+      isMounted = false;
+      clearInterval(intervalId);
+    };
   }, []);
 
   const toggleSessions = (id) => {

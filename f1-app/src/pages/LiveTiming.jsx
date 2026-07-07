@@ -35,9 +35,10 @@ const LiveTiming = () => {
   // Fetch data when the selected round changes
   useEffect(() => {
     let isMounted = true;
+    let intervalId;
 
-    const fetchDashboardData = async () => {
-      setLoading(true);
+    const fetchDashboardData = async (isInitial = false) => {
+      if (isInitial) setLoading(true);
       try {
         let result;
         if (selectedRound === 'latest') {
@@ -58,21 +59,21 @@ const LiveTiming = () => {
             setLapData(laps);
             setPitData(pits);
             setOvertakes(computeOvertakes(laps));
-            setLoading(false);
           }
-        } else {
-          if (isMounted) setLoading(false);
         }
       } catch (error) {
         console.error("Failed to load dashboard data", error);
-        if (isMounted) setLoading(false);
+      } finally {
+        if (isMounted && isInitial) setLoading(false);
       }
     };
 
-    fetchDashboardData();
+    fetchDashboardData(true);
+    intervalId = setInterval(() => fetchDashboardData(false), 30000);
 
     return () => {
       isMounted = false;
+      clearInterval(intervalId);
     };
   }, [selectedRound]);
 

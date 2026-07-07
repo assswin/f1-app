@@ -24,15 +24,23 @@ const Standings = () => {
   const currentYear = 2026;
 
   useEffect(() => {
-    const fetchStandings = async () => {
-      setLoading(true);
-      const driversData = await getDriverStandings(currentYear);
-      const constructorsData = await getConstructorStandings(currentYear);
-      setDriverStandings(driversData);
-      setConstructorStandings(constructorsData);
-      setLoading(false);
+    let intervalId;
+    const fetchStandings = async (isInitial = false) => {
+      if (isInitial) setLoading(true);
+      try {
+        const driversData = await getDriverStandings(currentYear);
+        const constructorsData = await getConstructorStandings(currentYear);
+        setDriverStandings(driversData);
+        setConstructorStandings(constructorsData);
+      } catch (error) {
+        console.error("Failed to fetch standings:", error);
+      } finally {
+        if (isInitial) setLoading(false);
+      }
     };
-    fetchStandings();
+    fetchStandings(true);
+    intervalId = setInterval(() => fetchStandings(false), 30000);
+    return () => clearInterval(intervalId);
   }, []);
 
   if (loading) {
