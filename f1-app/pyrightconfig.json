@@ -1,5 +1,12 @@
 {
-  "extraPaths": [
-    "./f1-race-replay"
+  "venvPath": "./scripts",
+  "venv": "venv",
+  "executionEnvironments": [
+    {
+      "root": "./f1-race-replay"
+    },
+    {
+      "root": "."
+    }
   ]
 }
