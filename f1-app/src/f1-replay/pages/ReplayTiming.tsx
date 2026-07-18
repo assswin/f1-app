@@ -43,7 +43,7 @@ export interface SessionData {
 }
 
 export default function ReplayPage() {
-  const searchParams = useSearchParams();
+  const [searchParams] = useSearchParams();
   const year = Number(searchParams.get("year"));
   const round = Number(searchParams.get("round"));
   const sessionType = searchParams.get("type") || "R";

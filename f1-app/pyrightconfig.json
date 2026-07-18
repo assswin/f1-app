@@ -1,6 +1,8 @@
 {
   "venvPath": "./scripts",
   "venv": "venv",
+  "extraPaths": ["f1-race-replay"],
+  "ignore": ["c:/__pyrefly_virtual__", "C:/__pyrefly_virtual__", "**/__pyrefly_virtual__**"],
   "executionEnvironments": [
     {
       "root": "./f1-race-replay"

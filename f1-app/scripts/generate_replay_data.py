@@ -24,16 +24,16 @@ else:
 
 # Fix JSON serialization for numpy types
 class NpEncoder(json.JSONEncoder):
-    def default(self, obj):
-        if isinstance(obj, np.integer):
-            return int(obj)
-        if isinstance(obj, np.floating):
-            return float(obj)
-        if isinstance(obj, np.ndarray):
-            return obj.tolist()
-        if pd.isna(obj):
+    def default(self, o):
+        if isinstance(o, np.integer):
+            return int(o)
+        if isinstance(o, np.floating):
+            return float(o)
+        if isinstance(o, np.ndarray):
+            return o.tolist()
+        if pd.isna(o):
             return None
-        return super(NpEncoder, self).default(obj)
+        return super(NpEncoder, self).default(o)
 
 def main():
     parser = argparse.ArgumentParser(description="Generate static JSON replay data.")

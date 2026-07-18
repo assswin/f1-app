@@ -1,1 +1,1 @@
-{"compilerOptions":{"baseUrl":".","jsx":"react-jsx","paths":{"@/*":["src/f1-replay/*"]}},"include":["src"]}
+{"compilerOptions":{"baseUrl":".","jsx":"react-jsx","module":"ESNext","moduleResolution":"bundler","paths":{"@/*":["src/f1-replay/*"]}},"include":["src"]}
