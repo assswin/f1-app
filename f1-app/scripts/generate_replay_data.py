@@ -6,10 +6,21 @@ from pathlib import Path
 import numpy as np
 import pandas as pd
 
-# Add f1-race-replay to path to import its modules
-sys.path.append(os.path.join(os.path.dirname(__file__), "..", "f1-race-replay"))
+import importlib.util
 
-from src.f1_data import get_race_telemetry, enable_cache, load_session, get_circuit_rotation # type: ignore
+# Add f1-race-replay to path to import its modules
+f1_data_path = os.path.join(os.path.dirname(__file__), "..", "f1-race-replay", "src", "f1_data.py")
+spec = importlib.util.spec_from_file_location("f1_data", f1_data_path)
+if spec and spec.loader:
+    f1_data = importlib.util.module_from_spec(spec)
+    sys.modules["f1_data"] = f1_data
+    spec.loader.exec_module(f1_data)
+    get_race_telemetry = f1_data.get_race_telemetry
+    enable_cache = f1_data.enable_cache
+    load_session = f1_data.load_session
+    get_circuit_rotation = f1_data.get_circuit_rotation
+else:
+    raise ImportError(f"Could not load f1_data from {f1_data_path}")
 
 # Fix JSON serialization for numpy types
 class NpEncoder(json.JSONEncoder):
