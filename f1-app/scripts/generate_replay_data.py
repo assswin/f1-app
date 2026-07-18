@@ -19,6 +19,10 @@ if spec and spec.loader:
     enable_cache = f1_data.enable_cache
     load_session = f1_data.load_session
     get_circuit_rotation = f1_data.get_circuit_rotation
+
+    # Downsample telemetry to drastically reduce file size (from ~500MB to <50MB)
+    f1_data.FPS = 5
+    f1_data.DT = 1 / f1_data.FPS
 else:
     raise ImportError(f"Could not load f1_data from {f1_data_path}")
 
@@ -28,7 +32,9 @@ class NpEncoder(json.JSONEncoder):
         if isinstance(o, np.integer):
             return int(o)
         if isinstance(o, np.floating):
-            return float(o)
+            return round(float(o), 3)
+        if isinstance(o, float):
+            return round(o, 3)
         if isinstance(o, np.ndarray):
             return o.tolist()
         if pd.isna(o):
