@@ -127,7 +127,7 @@ def main():
     output_dir = Path(__file__).parent.parent / "public" / "data" / str(args.year) / str(args.round)
     output_dir.mkdir(parents=True, exist_ok=True)
     
-    output_path = output_dir / "replay.json"
+    output_path = output_dir / f"replay_{args.session}.json"
     print(f"Saving to {output_path}...")
     
     with open(output_path, "w", encoding="utf-8") as f:

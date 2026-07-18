@@ -49,8 +49,33 @@ export default function ReplayPage() {
   const sessionType = searchParams.get("type") || "R";
 
   if (!year || !round) {
-    if (typeof window !== "undefined") window.location.href = "/";
-    return null;
+    return (
+      <div className="min-h-screen bg-f1-dark flex items-center justify-center px-4 py-16">
+        <div className="max-w-3xl w-full bg-f1-card border border-f1-border rounded-3xl p-8 text-center">
+          <h1 className="text-3xl sm:text-4xl font-bold text-white mb-4">F1 Replay</h1>
+          <p className="text-f1-muted mb-8">
+            The replay page is ready. Use the button below to open the available static replay session.
+          </p>
+          <div className="flex flex-col sm:flex-row justify-center gap-4">
+            <a
+              href="/replay?year=2024&round=12&type=R"
+              className="inline-flex items-center justify-center rounded-full bg-f1-red px-6 py-3 text-sm font-bold text-white transition hover:bg-white/10"
+            >
+              Open 2024 British GP Race Replay
+            </a>
+            <a
+              href="/"
+              className="inline-flex items-center justify-center rounded-full border border-f1-border bg-transparent px-6 py-3 text-sm font-bold text-white/80 transition hover:text-white"
+            >
+              Back to home
+            </a>
+          </div>
+          <p className="text-xs text-f1-muted mt-6">
+            If you want more replay sessions, add replay files under `public/data/{year}/{round}/replay_{sessionType}.json`.
+          </p>
+        </div>
+      </div>
+    );
   }
 
   const [selectedDrivers, setSelectedDrivers] = useState<string[]>([]);

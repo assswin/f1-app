@@ -128,9 +128,9 @@ export function useReplaySocket(year: number, round: number, sessionType: string
   useEffect(() => {
     setState((s) => ({ ...s, loading: true, statusMessage: "Downloading telemetry data..." }));
     
-    // In production, you would fetch from /data/{year}/{round}/replay.json
+    // In production, you would fetch from /data/{year}/{round}/replay_{sessionType}.json
     // For this example we'll assume the JSON is available at that path
-    fetch(`/data/${year}/${round}/replay.json`)
+    fetch(`/data/${year}/${round}/replay_${sessionType}.json`)
       .then(res => {
         if (!res.ok) throw new Error("Replay data not found for this race.");
         return res.json();
