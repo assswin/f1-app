@@ -11,7 +11,7 @@ from fastapi.staticfiles import StaticFiles
 from fastapi.middleware.cors import CORSMiddleware
 
 from auth import is_auth_enabled, verify_token
-from routers import sessions, track, laps, results, replay, telemetry, sync, live, live_status
+from routers import sessions, track, laps, results, replay, telemetry, sync
 from routers import auth_routes
 from services.auto_precompute import auto_precompute_loop, get_allowed_session_types
 
@@ -88,8 +88,7 @@ app.include_router(results.router)
 app.include_router(replay.router)
 app.include_router(telemetry.router)
 app.include_router(sync.router)
-app.include_router(live.router)
-app.include_router(live_status.router)
+
 
 
 @app.get("/api/health")
@@ -103,9 +102,7 @@ async def redirect_replay(year: int, round: int, type: str = "R"):
     return RedirectResponse(f"/replay?year={year}&round={round}&type={type}")
 
 
-@app.get("/live/{year}/{round}")
-async def redirect_live(year: int, round: int, type: str = "R"):
-    return RedirectResponse(f"/live?year={year}&round={round}&type={type}")
+
 
 
 @app.get("/results/{year}/{round}")

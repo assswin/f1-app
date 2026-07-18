@@ -1,7 +1,7 @@
 import { useRef, useState, useEffect } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { MapPin, Calendar, CheckCircle, Award, ChevronDown, ChevronUp, Clock } from 'lucide-react';
-import { getSchedule, getRaceResults } from '../services/api';
+import { getSchedule } from '../services/api';
 import CountdownTimer from '../components/CountdownTimer';
 import './Schedule.css';
 
@@ -39,25 +39,9 @@ const Schedule = () => {
       if (isInitial) setLoading(true);
 
       try {
-        // Fetch live results to see if any new races just finished
-        const liveResults = await getRaceResults('current');
-
-        // Use the local schedule for 2026 since it contains the accurate simulated winners
-        // from updateSchedule.cjs, whereas the external API might be outdated or out of sync.
         const mappedSchedule = localSchedule.map((race) => {
           let winner = race.winner;
           let status = race.status;
-
-          // Merge live results if available and newer than local simulated data
-          if (liveResults && liveResults.length > 0) {
-            const liveRace = liveResults.find(r => parseInt(r.round) === race.round);
-            if (liveRace && liveRace.Results && liveRace.Results.length > 0) {
-              const liveWinner = liveRace.Results[0].Driver;
-              // Format as First Last to match mock data style, or whatever is available
-              winner = `${liveWinner.givenName} ${liveWinner.familyName}`;
-              status = 'finished';
-            }
-          }
 
           return {
             id: race.id,

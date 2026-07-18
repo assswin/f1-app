@@ -71,20 +71,7 @@ export const SessionSelector: React.FC = () => {
           ))}
         </select>
 
-        <div className="flex bg-surface rounded-md border border-border p-0.5">
-            <button 
-                onClick={() => setMode(AppMode.LIVE)}
-                className={`px-3 py-1 text-xs font-bold rounded ${mode === AppMode.LIVE ? 'bg-primary text-white' : 'text-muted hover:text-white'}`}
-            >
-                LIVE
-            </button>
-            <button 
-                onClick={() => setMode(AppMode.REPLAY)}
-                className={`px-3 py-1 text-xs font-bold rounded ${mode === AppMode.REPLAY ? 'bg-primary text-white' : 'text-muted hover:text-white'}`}
-            >
-                REPLAY
-            </button>
-        </div>
+
       </div>
 
       <div className="flex items-center gap-4">
@@ -114,12 +101,7 @@ export const SessionSelector: React.FC = () => {
             </div>
         )}
         
-        {mode === AppMode.LIVE && (
-            <div className="flex items-center gap-2 text-red-500 animate-pulse">
-                <div className="w-2 h-2 bg-red-500 rounded-full" />
-                <span className="text-xs font-bold tracking-widest">LIVE DATA</span>
-            </div>
-        )}
+
       </div>
     </div>
   );

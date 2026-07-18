@@ -24,7 +24,7 @@ const navLinks = [
   { to: '/car', label: 'Cars & Teams' },
   { to: '/standings', label: 'Standings' },
   { to: '/standings/history', label: 'History' },
-  { to: '/live', label: '🔴 LIVE TIMING' },
+  { to: '/replays', label: 'Replays' },
   { to: '/about', label: 'About Us' },
 ];
 
@@ -61,7 +61,7 @@ const Navbar = ({ isVideoMuted, setIsVideoMuted }) => {
                 key={link.to} 
                 to={link.to} 
                 className={location.pathname === link.to ? 'active' : ''}
-                style={link.to === '/live' ? { color: 'var(--accent-red)', fontWeight: 800 } : {}}
+                style={link.to === '/replays' ? { color: 'var(--accent-red)', fontWeight: 800 } : {}}
               >
                 {link.label}
               </Link>

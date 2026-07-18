@@ -28,7 +28,7 @@ interface RaceState {
 }
 
 export const useRaceStore = create<RaceState>((set) => ({
-  mode: AppMode.LIVE,
+  mode: AppMode.REPLAY,
   currentSession: null,
   drivers: {},
   weather: null,

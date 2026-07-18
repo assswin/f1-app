@@ -23,16 +23,7 @@ interface SessionEntry {
   size_bytes?: number;
 }
 
-interface LiveSessionInfo {
-  year: number;
-  round_number: number;
-  event_name: string;
-  country: string;
-  session_name: string;
-  session_type: string;
-  session_start: string;
-  pre_session: boolean;
-}
+
 
 interface Event {
   round_number: number;
@@ -251,8 +242,7 @@ export default function SessionPicker() {
   const { data: eventsData, loading: eventsLoading } = useApi<EventsResponse>(
     `/api/seasons/${year}/events`,
   );
-  const { data: liveData } = useApi<{ live: LiveSessionInfo | null }>("/api/live/status");
-  const liveSession = liveData?.live || null;
+
 
   const seasons = (seasonsData?.seasons || []).filter((s) => s <= currentYear);
   const events = eventsData?.events || [];
@@ -337,32 +327,7 @@ export default function SessionPicker() {
               const code = SESSION_LABELS[session.name];
               if (!code) return null;
               const localTime = formatLocalTime(session.date_utc);
-              const isLive = liveSession?.year === year && liveSession?.round_number === evt.round_number && liveSession?.session_type === code;
-              if (isLive) {
-                return (
-                  <div key={session.name} className="flex flex-col items-center">
-                    {localTime && (
-                      <span className="text-[10px] text-red-400 mb-1 text-center leading-tight">
-                        {localTime.dayDate}<br />{localTime.time}
-                      </span>
-                    )}
-                    <a
-                      href={`/live?year=${year}&round=${evt.round_number}&type=${code}`}
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        setNavigating(true);
-                      }}
-                      className="px-3 py-1.5 bg-red-600 text-white text-xs font-bold rounded hover:bg-red-500 transition-colors flex items-center gap-1.5"
-                    >
-                      <span className="relative flex h-1.5 w-1.5">
-                        <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-white opacity-75" />
-                        <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-white" />
-                      </span>
-                      {session.name}
-                    </a>
-                  </div>
-                );
-              }
+
               if (session.available) {
                 const sizeLabel = formatSize(session.size_bytes);
                 const tooltip = session.precomputed
@@ -590,38 +555,7 @@ export default function SessionPicker() {
           </div>
         ) : (
           <>
-            {/* Live session banner — only show on the year that has the live session */}
-            {liveSession && liveSession.year === year && (
-              <div className="mb-8 max-w-3xl mx-auto">
-                <a
-                  href={`/live?year=${liveSession.year}&round=${liveSession.round_number}&type=${liveSession.session_type}`}
-                  onClick={() => setNavigating(true)}
-                  className="block bg-f1-card border border-f1-red/50 rounded-xl overflow-hidden hover:border-f1-red transition-all group"
-                >
-                  <div className="px-4 py-4 flex items-center gap-4">
-                    <div className="flex items-center gap-1.5 px-3 py-1.5 bg-red-600 rounded text-sm font-extrabold text-white uppercase flex-shrink-0">
-                      <span className="relative flex h-2 w-2">
-                        <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-white opacity-75" />
-                        <span className="relative inline-flex rounded-full h-2 w-2 bg-white" />
-                      </span>
-                      LIVE
-                    </div>
-                    <div className="flex-1 min-w-0">
-                      <h3 className="text-white font-bold group-hover:text-red-400 transition-colors">
-                        {COUNTRY_FLAGS[liveSession.country] && <span className="mr-1.5">{COUNTRY_FLAGS[liveSession.country]}</span>}
-                        {liveSession.event_name} — {liveSession.session_name}
-                      </h3>
-                      <p className="text-f1-muted text-sm">
-                        {liveSession.pre_session ? "Starting soon — click to open live timing" : "Session in progress — click to open live timing"}
-                      </p>
-                    </div>
-                    <svg className="w-5 h-5 text-f1-muted group-hover:text-white transition-colors flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                      <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
-                    </svg>
-                  </div>
-                </a>
-              </div>
-            )}
+
 
             {/* Latest round at top */}
             {latestEvent && (

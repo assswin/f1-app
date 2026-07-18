@@ -102,15 +102,12 @@ export const useRaceData = () => {
         }
     };
 
-    if (isPlaying || mode === AppMode.LIVE) {
+    if (isPlaying) {
         intervalRef.current = setInterval(() => {
             if (mode === AppMode.REPLAY && isPlaying) {
                 const newTime = new Date(new Date(currentTime).getTime() + (tickRate * playbackSpeed)).toISOString();
                 setPlaybackTime(newTime);
                 fetchData();
-            } else if (mode === AppMode.LIVE) {
-                 setPlaybackTime(new Date().toISOString());
-                 fetchData();
             }
         }, tickRate);
     } else {

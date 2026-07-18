@@ -90,6 +90,5 @@ export interface DriverState extends Driver {
 }
 
 export enum AppMode {
-  LIVE = 'LIVE',
   REPLAY = 'REPLAY',
 }
