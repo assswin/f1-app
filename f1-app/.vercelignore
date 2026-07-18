@@ -1,0 +1,9 @@
+node_modules
+backend/venv
+venv
+backend/.fastf1-cache
+.fastf1-cache
+.git
+.env
+dist
+public/assets/video
