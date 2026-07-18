@@ -10,10 +10,7 @@ import About from './pages/About';
 import Schedule from './pages/Schedule';
 import Standings from './pages/Standings';
 import HistoricalStandings from './pages/HistoricalStandings';
-import SessionPicker from './f1-replay/components/SessionPicker';
 
-import ReplayTiming from './f1-replay/pages/ReplayTiming';
-import { useSearchParams } from 'react-router-dom';
 
 const pageTransition = {
   initial: { opacity: 0, y: 20 },
@@ -34,8 +31,7 @@ function AnimatedRoutes() {
         <Route path="/schedule" element={<motion.div {...pageTransition}><Schedule /></motion.div>} />
         <Route path="/standings" element={<motion.div {...pageTransition}><Standings /></motion.div>} />
         <Route path="/standings/history" element={<motion.div {...pageTransition}><HistoricalStandings /></motion.div>} />
-        <Route path="/replays" element={<motion.div {...pageTransition}><SessionPicker /></motion.div>} />
-        <Route path="/replay" element={<motion.div {...pageTransition}><ReplayTiming /></motion.div>} />
+
         <Route path="/about" element={<motion.div {...pageTransition}><About /></motion.div>} />
       </Routes>
     </AnimatePresence>
