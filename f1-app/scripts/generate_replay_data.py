@@ -9,7 +9,7 @@ import pandas as pd
 # Add f1-race-replay to path to import its modules
 sys.path.append(os.path.join(os.path.dirname(__file__), "..", "f1-race-replay"))
 
-from src.f1_data import get_race_telemetry, enable_cache, load_session, get_circuit_rotation
+from src.f1_data import get_race_telemetry, enable_cache, load_session, get_circuit_rotation # type: ignore
 
 # Fix JSON serialization for numpy types
 class NpEncoder(json.JSONEncoder):
