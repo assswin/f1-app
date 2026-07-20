@@ -1,7 +1,7 @@
 import { useRef, useState, useEffect } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { MapPin, Calendar, CheckCircle, Award, ChevronDown, ChevronUp, Clock } from 'lucide-react';
-import { getF1Calendar, getRaceResults } from '../services/api';
+import { getSchedule, getRaceResults } from '../services/api';
 import { schedule as localSchedule } from '../data/f1Data';
 import CountdownTimer from '../components/CountdownTimer';
 import './Schedule.css';
@@ -40,25 +40,28 @@ const Schedule = () => {
       if (isInitial) setLoading(true);
 
       try {
+        // Use Ergast API for schedule and results
         const [calendarData, resultsData] = await Promise.all([
-          getF1Calendar(currentYear),
+          getSchedule(currentYear),
           getRaceResults(currentYear)
         ]);
 
-        const mappedSchedule = calendarData.map((race) => {
-          const roundStr = race.round.toString();
-          const localRace = localSchedule.find(lr => lr.round === race.round);
-          // Match by raceName since different APIs might count cancelled races differently, altering the round numbers
-          const raceResult = resultsData.find(r => r.raceName === race.name);
+        // Map over our local schedule (scraped from F1 website) as the base
+        const mappedSchedule = localSchedule.map((localRace) => {
+          const roundStr = localRace.round.toString();
+          const apiRace = calendarData.find(r => r.round === roundStr);
+          const raceResult = resultsData.find(r => r.round === roundStr);
           
-          const raceDateStr = race.sessions && race.sessions.gp ? race.sessions.gp : null;
-          const raceDateObj = raceDateStr ? new Date(raceDateStr) : new Date();
+          // Fallback to local data if API data is missing for this round (like pre-season)
+          const raceDateStr = apiRace && apiRace.date && apiRace.time ? `${apiRace.date}T${apiRace.time}` : localRace.dateObj;
+          const raceDateObj = new Date(raceDateStr);
           const isPast = raceDateObj < new Date();
 
-          let winner = null;
-          let podium = [];
+          let winner = localRace.winner;
+          let podium = localRace.podium || [];
           let status = isPast ? 'finished' : 'upcoming';
 
+          // Override with live API results if available
           if (raceResult && raceResult.Results && raceResult.Results.length > 0) {
             winner = `${raceResult.Results[0].Driver.givenName} ${raceResult.Results[0].Driver.familyName}`;
             podium = raceResult.Results.slice(0, 3).map(r => ({
@@ -66,35 +69,26 @@ const Schedule = () => {
               name: `${r.Driver.givenName} ${r.Driver.familyName}`,
               team: r.Constructor.name
             }));
-          } else if (isPast && localRace && localRace.podium) {
-            winner = localRace.podium[0];
-            podium = localRace.podium.map((name, i) => ({
-              pos: (i + 1).toString(),
-              name: name,
-              team: 'yooooooo...'
-            }));
           }
 
+          // Parse session data from Ergast API
+          const sessions = apiRace ? {
+             p1: apiRace.FirstPractice ? new Date(`${apiRace.FirstPractice.date}T${apiRace.FirstPractice.time || '00:00:00Z'}`) : null,
+             p2: apiRace.SecondPractice ? new Date(`${apiRace.SecondPractice.date}T${apiRace.SecondPractice.time || '00:00:00Z'}`) : null,
+             p3: apiRace.ThirdPractice ? new Date(`${apiRace.ThirdPractice.date}T${apiRace.ThirdPractice.time || '00:00:00Z'}`) : null,
+             qualifying: apiRace.Qualifying ? new Date(`${apiRace.Qualifying.date}T${apiRace.Qualifying.time || '00:00:00Z'}`) : null,
+             sprintQualifying: apiRace.SprintShootout ? new Date(`${apiRace.SprintShootout.date}T${apiRace.SprintShootout.time || '00:00:00Z'}`) : null,
+             sprint: apiRace.Sprint ? new Date(`${apiRace.Sprint.date}T${apiRace.Sprint.time || '00:00:00Z'}`) : null,
+             race: raceDateObj
+          } : null;
+
           return {
-            id: race.slug,
-            round: race.round,
-            grandPrix: localRace ? localRace.grandPrix : race.name,
-            circuit: localRace ? localRace.circuit : race.location,
-            date: raceDateStr,
+            ...localRace,
             dateObj: raceDateObj,
             status: status,
             winner: winner,
             podium: podium,
-            image: localRace && localRace.image ? localRace.image : `/assets/tracks/${race.slug}.png`,
-            sessions: race.sessions ? {
-              p1: race.sessions.fp1 ? new Date(race.sessions.fp1) : null,
-              p2: race.sessions.fp2 ? new Date(race.sessions.fp2) : null,
-              p3: race.sessions.fp3 ? new Date(race.sessions.fp3) : null,
-              qualifying: race.sessions.qualifying ? new Date(race.sessions.qualifying) : null,
-              sprintQualifying: race.sessions.sprintQualifying ? new Date(race.sessions.sprintQualifying) : null,
-              sprint: race.sessions.sprint ? new Date(race.sessions.sprint) : null,
-              race: raceDateObj
-            } : null
+            sessions: sessions || localRace.sessions
           };
         });
 
