@@ -1,7 +1,7 @@
 import { useRef, useState, useEffect } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { MapPin, Calendar, CheckCircle, Award, ChevronDown, ChevronUp, Clock } from 'lucide-react';
-import { getSchedule } from '../services/api';
+import { getF1Calendar, getRaceResults } from '../services/api';
 import CountdownTimer from '../components/CountdownTimer';
 import './Schedule.css';
 
@@ -20,8 +20,6 @@ const listItem = {
   visible: { opacity: 1, y: 0, transition: { type: 'spring', stiffness: 200, damping: 20 } },
 };
 
-import { schedule as localSchedule } from '../data/f1Data';
-
 const Schedule = () => {
   const [schedule, setSchedule] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -31,6 +29,8 @@ const Schedule = () => {
   const { scrollYProgress } = useScroll({ target: pageRef, offset: ['start start', 'end start'] });
   const bgTextY = useTransform(scrollYProgress, [0, 1], [0, -200]);
 
+  const currentYear = 2026;
+
   useEffect(() => {
     let isMounted = true;
     let intervalId;
@@ -39,26 +39,52 @@ const Schedule = () => {
       if (isInitial) setLoading(true);
 
       try {
-        const mappedSchedule = localSchedule.map((race) => {
-          let winner = race.winner;
-          let status = race.status;
+        const [calendarData, resultsData] = await Promise.all([
+          getF1Calendar(currentYear),
+          getRaceResults(currentYear)
+        ]);
+
+        const mappedSchedule = calendarData.map((race) => {
+          const roundStr = race.round.toString();
+          // Find if there are results for this round
+          const raceResult = resultsData.find(r => r.round === roundStr);
+          
+          let winner = null;
+          let podium = [];
+          let status = 'upcoming';
+
+          if (raceResult && raceResult.Results && raceResult.Results.length > 0) {
+            status = 'finished';
+            winner = `${raceResult.Results[0].Driver.givenName} ${raceResult.Results[0].Driver.familyName}`;
+            podium = raceResult.Results.slice(0, 3).map(r => ({
+              pos: r.position,
+              name: `${r.Driver.givenName} ${r.Driver.familyName}`,
+              team: r.Constructor.name
+            }));
+          }
+
+          const raceDateStr = race.sessions && race.sessions.gp ? race.sessions.gp : null;
+          const raceDateObj = raceDateStr ? new Date(raceDateStr) : new Date();
 
           return {
-            id: race.id,
+            id: race.slug,
             round: race.round,
-            grandPrix: race.grandPrix,
-            circuit: race.circuit,
-            date: race.date,
-            dateObj: new Date(race.dateObj),
+            grandPrix: race.name + " Grand Prix",
+            circuit: race.location,
+            date: raceDateStr,
+            dateObj: raceDateObj,
             status: status,
             winner: winner,
-            image: race.image,
+            podium: podium,
+            image: `/assets/tracks/${race.slug}.png`,
             sessions: race.sessions ? {
-              p1: race.sessions.p1 ? new Date(race.sessions.p1) : null,
-              p2: race.sessions.p2 ? new Date(race.sessions.p2) : null,
-              p3: race.sessions.p3 ? new Date(race.sessions.p3) : null,
+              p1: race.sessions.fp1 ? new Date(race.sessions.fp1) : null,
+              p2: race.sessions.fp2 ? new Date(race.sessions.fp2) : null,
+              p3: race.sessions.fp3 ? new Date(race.sessions.fp3) : null,
               qualifying: race.sessions.qualifying ? new Date(race.sessions.qualifying) : null,
-              race: new Date(race.sessions.race)
+              sprintQualifying: race.sessions.sprintQualifying ? new Date(race.sessions.sprintQualifying) : null,
+              sprint: race.sessions.sprint ? new Date(race.sessions.sprint) : null,
+              race: raceDateObj
             } : null
           };
         });
@@ -72,7 +98,7 @@ const Schedule = () => {
     };
 
     fetchAPI(true);
-    intervalId = setInterval(() => fetchAPI(false), 30000);
+    intervalId = setInterval(() => fetchAPI(false), 60000);
 
     return () => {
       isMounted = false;
@@ -109,10 +135,10 @@ const Schedule = () => {
         whileInView="visible"
         viewport={{ once: true }}
       >
-        LIVE API RACE CALENDAR
+        LIVE API RACE CALENDAR ({currentYear})
       </motion.h1>
 
-      {nextRace && (
+      {nextRace && nextRace.status === 'upcoming' && (
         <div className="schedule-next-race-wrapper">
           <CountdownTimer targetDate={nextRace.dateObj.toISOString()} eventName={nextRace.grandPrix} />
         </div>
@@ -139,9 +165,26 @@ const Schedule = () => {
                 <MapPin size={16} /> {race.circuit}
               </div>
 
-              {race.winner && (
-                <div className="race-winner" style={{ marginTop: '10px', color: 'var(--accent-red)', fontWeight: 'bold', display: 'flex', alignItems: 'center', gap: '6px' }}>
-                  <Award size={18} /> Winner: {race.winner}
+              {race.status === 'finished' && race.podium && race.podium.length > 0 && (
+                <div className="race-podium" style={{ marginTop: '15px', background: 'rgba(0,0,0,0.4)', padding: '12px', borderRadius: '8px', borderLeft: '3px solid var(--accent-red)' }}>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '10px', color: '#fff', fontSize: '1rem', fontWeight: 'bold' }}>
+                    <Award size={18} color="var(--accent-red)" /> Podium Results
+                  </div>
+                  <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
+                    {race.podium.map(p => (
+                      <div key={p.pos} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', background: 'rgba(255,255,255,0.03)', padding: '6px 10px', borderRadius: '4px' }}>
+                        <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+                          <span style={{ 
+                            display: 'inline-block', width: '22px', height: '22px', textAlign: 'center', lineHeight: '22px', borderRadius: '50%', fontSize: '0.8rem', fontWeight: 'bold',
+                            backgroundColor: p.pos === '1' ? '#FFD700' : p.pos === '2' ? '#C0C0C0' : '#CD7F32',
+                            color: '#000'
+                          }}>{p.pos}</span>
+                          <span style={{ fontWeight: 600, color: '#fff', fontSize: '0.95rem' }}>{p.name}</span>
+                        </div>
+                        <span style={{ color: '#aaa', fontSize: '0.8rem', textTransform: 'uppercase' }}>{p.team}</span>
+                      </div>
+                    ))}
+                  </div>
                 </div>
               )}
 
@@ -162,15 +205,30 @@ const Schedule = () => {
                           <span>Practice 1</span> <span>{formatDate(race.sessions.p1)}</span>
                         </div>
                       )}
-                      {race.sessions.p2 && (
-                        <div style={{ display: 'flex', justifyContent: 'space-between', color: '#aaa' }}>
-                          <span>Practice 2 / Sprint Quali</span> <span>{formatDate(race.sessions.p2)}</span>
-                        </div>
-                      )}
-                      {race.sessions.p3 && (
-                        <div style={{ display: 'flex', justifyContent: 'space-between', color: '#aaa' }}>
-                          <span>Practice 3 / Sprint</span> <span>{formatDate(race.sessions.p3)}</span>
-                        </div>
+                      {race.sessions.sprintQualifying ? (
+                        <>
+                          <div style={{ display: 'flex', justifyContent: 'space-between', color: '#aaa' }}>
+                            <span>Sprint Qualifying</span> <span>{formatDate(race.sessions.sprintQualifying)}</span>
+                          </div>
+                          {race.sessions.sprint && (
+                            <div style={{ display: 'flex', justifyContent: 'space-between', color: '#aaa' }}>
+                              <span>Sprint</span> <span>{formatDate(race.sessions.sprint)}</span>
+                            </div>
+                          )}
+                        </>
+                      ) : (
+                        <>
+                          {race.sessions.p2 && (
+                            <div style={{ display: 'flex', justifyContent: 'space-between', color: '#aaa' }}>
+                              <span>Practice 2</span> <span>{formatDate(race.sessions.p2)}</span>
+                            </div>
+                          )}
+                          {race.sessions.p3 && (
+                            <div style={{ display: 'flex', justifyContent: 'space-between', color: '#aaa' }}>
+                              <span>Practice 3</span> <span>{formatDate(race.sessions.p3)}</span>
+                            </div>
+                          )}
+                        </>
                       )}
                       {race.sessions.qualifying && (
                         <div style={{ display: 'flex', justifyContent: 'space-between', color: '#fff', fontWeight: 600 }}>
@@ -188,7 +246,7 @@ const Schedule = () => {
 
             <div className="race-date">
               <Calendar size={18} />
-              <span>{new Date(race.date).toLocaleDateString()}</span>
+              <span>{race.dateObj ? race.dateObj.toLocaleDateString() : 'TBA'}</span>
             </div>
             <div className="race-status">
               {race.status === 'upcoming' ? (
@@ -205,3 +263,4 @@ const Schedule = () => {
 };
 
 export default Schedule;
+

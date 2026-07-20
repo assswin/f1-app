@@ -10,6 +10,20 @@ export const getHistoricalChampions = () => {
 };
 
 /**
+ * Fetches the FULL Schedule for a specific year from sportstimes F1Calendar API
+ */
+export const getF1Calendar = async (year) => {
+  try {
+    const res = await fetch(`https://raw.githubusercontent.com/sportstimes/f1/main/_db/f1/${year}.json`);
+    const data = await res.json();
+    return data.races || [];
+  } catch (error) {
+    console.error(`Error fetching F1 Calendar for ${year}:`, error);
+    return [];
+  }
+};
+
+/**
  * Fetches the FULL Driver Standings for a specific year from live API
  */
 export const getDriverStandings = async (year) => {
