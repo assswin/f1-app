@@ -112,7 +112,7 @@ export const getSchedule = async (year) => {
 export const getRaceResults = async (year) => {
   try {
     const endpoint = (year === 2026 || year === 'current') ? 'current' : year;
-    const res = await fetch(`https://api.jolpi.ca/ergast/f1/${endpoint}/results.json?limit=100`);
+    const res = await fetch(`https://api.jolpi.ca/ergast/f1/${endpoint}/results.json?limit=1000`);
     const data = await res.json();
     return data.MRData.RaceTable.Races || [];
   } catch (error) {

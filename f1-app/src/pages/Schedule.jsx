@@ -48,8 +48,8 @@ const Schedule = () => {
         const mappedSchedule = calendarData.map((race) => {
           const roundStr = race.round.toString();
           const localRace = localSchedule.find(lr => lr.round === race.round);
-          // Find if there are results for this round
-          const raceResult = resultsData.find(r => r.round === roundStr);
+          // Match by raceName since different APIs might count cancelled races differently, altering the round numbers
+          const raceResult = resultsData.find(r => r.raceName === race.name);
           
           const raceDateStr = race.sessions && race.sessions.gp ? race.sessions.gp : null;
           const raceDateObj = raceDateStr ? new Date(raceDateStr) : new Date();
