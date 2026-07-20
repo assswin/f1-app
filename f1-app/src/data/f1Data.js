@@ -38,10 +38,259 @@ export const constructors = [
 ];
 
 export const schedule = [
-  { id: 'bahrain', round: 1, grandPrix: 'Bahrain Grand Prix', circuit: 'Bahrain International Circuit', date: 'Feb 26-28, 2026', winner: null, status: 'upcoming', dateObj: '2026-02-28T15:00:00Z', image: 'https://media.formula1.com/image/upload/f_auto/q_auto/v1677244985/content/dam/fom-website/2018-redesign-assets/Track%20icons%204x3/Bahrain.png' },
-  { id: 'saudi', round: 2, grandPrix: 'Saudi Arabian Grand Prix', circuit: 'Jeddah Corniche Circuit', date: 'Mar 6-8, 2026', winner: null, status: 'upcoming', dateObj: '2026-03-08T17:00:00Z', image: 'https://media.formula1.com/image/upload/f_auto/q_auto/v1677244985/content/dam/fom-website/2018-redesign-assets/Track%20icons%204x3/Saudi%20Arabia.png' },
-  { id: 'australia', round: 3, grandPrix: 'Australian Grand Prix', circuit: 'Albert Park Circuit', date: 'Mar 20-22, 2026', winner: null, status: 'upcoming', dateObj: '2026-03-22T04:00:00Z', image: 'https://media.formula1.com/image/upload/f_auto/q_auto/v1677244985/content/dam/fom-website/2018-redesign-assets/Track%20icons%204x3/Australia.png' },
-  { id: 'japan', round: 4, grandPrix: 'Japanese Grand Prix', circuit: 'Suzuka International Racing Course', date: 'Apr 3-5, 2026', winner: null, status: 'upcoming', dateObj: '2026-04-05T05:00:00Z', image: 'https://media.formula1.com/image/upload/f_auto/q_auto/v1677244984/content/dam/fom-website/2018-redesign-assets/Track%20icons%204x3/Japan.png' },
-  { id: 'china', round: 5, grandPrix: 'Chinese Grand Prix', circuit: 'Shanghai International Circuit', date: 'Apr 17-19, 2026', winner: null, status: 'upcoming', dateObj: '2026-04-19T07:00:00Z', image: 'https://media.formula1.com/image/upload/f_auto/q_auto/v1677244986/content/dam/fom-website/2018-redesign-assets/Track%20icons%204x3/China.png' },
-  { id: 'miami', round: 6, grandPrix: 'Miami Grand Prix', circuit: 'Miami International Autodrome', date: 'May 1-3, 2026', winner: null, status: 'upcoming', dateObj: '2026-05-03T20:00:00Z', image: 'https://media.formula1.com/image/upload/f_auto/q_auto/v1677244985/content/dam/fom-website/2018-redesign-assets/Track%20icons%204x3/Miami.png' },
+  {
+    "id": "pre-season-testing-1",
+    "round": 0,
+    "grandPrix": "FORMULA 1 ARAMCO PRE-SEASON TESTING 1 2026",
+    "circuit": "Pre-season-testing-1 Circuit",
+    "date": "11 - 13 Feb, 2026",
+    "winner": null,
+    "status": "upcoming",
+    "dateObj": "2026-02-13T15:00:00Z",
+    "image": "https://media.formula1.com/image/upload/c_lfill,w_600/q_auto/v1740000001/fom-website/static-assets/2026/races/card/pre-season-testing.webp"
+  },
+  {
+    "id": "pre-season-testing-2",
+    "round": 0,
+    "grandPrix": "FORMULA 1 ARAMCO PRE-SEASON TESTING 2 2026",
+    "circuit": "Pre-season-testing-2 Circuit",
+    "date": "18 - 20 Feb, 2026",
+    "winner": null,
+    "status": "upcoming",
+    "dateObj": "2026-02-20T15:00:00Z",
+    "image": "https://media.formula1.com/image/upload/c_lfill,w_600/q_auto/v1740000001/fom-website/static-assets/2026/races/card/pre-season-testing.webp"
+  },
+  {
+    "id": "australia",
+    "round": 1,
+    "grandPrix": "FORMULA 1 QATAR AIRWAYS AUSTRALIAN GRAND PRIX 2026",
+    "circuit": "Australia Circuit",
+    "date": "06 - 08 Mar, 2026",
+    "winner": "George Russell",
+    "status": "finished",
+    "dateObj": "2026-03-08T15:00:00Z",
+    "image": "https://media.formula1.com/image/upload/c_lfill,w_64/q_auto/d_common:f1:2026:fallback:driver:2026fallbackdriverright.webp/v1740000001/common/f1/2026/mercedes/georus01/2026mercedesgeorus01right.webp"
+  },
+  {
+    "id": "china",
+    "round": 2,
+    "grandPrix": "FORMULA 1 HEINEKEN CHINESE GRAND PRIX 2026",
+    "circuit": "China Circuit",
+    "date": "13 - 15 Mar, 2026",
+    "winner": "Kimi Antonelli",
+    "status": "finished",
+    "dateObj": "2026-03-15T15:00:00Z",
+    "image": "https://media.formula1.com/image/upload/c_lfill,w_64/q_auto/d_common:f1:2026:fallback:driver:2026fallbackdriverright.webp/v1740000001/common/f1/2026/mercedes/andant01/2026mercedesandant01right.webp"
+  },
+  {
+    "id": "japan",
+    "round": 3,
+    "grandPrix": "FORMULA 1 ARAMCO JAPANESE GRAND PRIX 2026",
+    "circuit": "Japan Circuit",
+    "date": "27 - 29 Mar, 2026",
+    "winner": "Kimi Antonelli",
+    "status": "finished",
+    "dateObj": "2026-03-29T15:00:00Z",
+    "image": "https://media.formula1.com/image/upload/c_lfill,w_64/q_auto/d_common:f1:2026:fallback:driver:2026fallbackdriverright.webp/v1740000001/common/f1/2026/mercedes/andant01/2026mercedesandant01right.webp"
+  },
+  {
+    "id": "miami",
+    "round": 4,
+    "grandPrix": "FORMULA 1 CRYPTO.COM MIAMI GRAND PRIX 2026",
+    "circuit": "Miami Circuit",
+    "date": "01 - 03 May, 2026",
+    "winner": "Kimi Antonelli",
+    "status": "finished",
+    "dateObj": "2026-05-03T15:00:00Z",
+    "image": "https://media.formula1.com/image/upload/c_lfill,w_64/q_auto/d_common:f1:2026:fallback:driver:2026fallbackdriverright.webp/v1740000001/common/f1/2026/mercedes/andant01/2026mercedesandant01right.webp"
+  },
+  {
+    "id": "canada",
+    "round": 5,
+    "grandPrix": "FORMULA 1 LENOVO GRAND PRIX DU CANADA 20",
+    "circuit": "Canada Circuit",
+    "date": "22 - 24 May, 2026",
+    "winner": "George Russell",
+    "status": "finished",
+    "dateObj": "2026-05-24T15:00:00Z",
+    "image": "https://media.formula1.com/image/upload/c_lfill,w_64/q_auto/d_common:f1:2026:fallback:driver:2026fallbackdriverright.webp/v1740000001/common/f1/2026/mercedes/andant01/2026mercedesandant01right.webp"
+  },
+  {
+    "id": "monaco",
+    "round": 6,
+    "grandPrix": "FORMULA 1 LOUIS VUITTON GRAND PRIX DE MONACO 20",
+    "circuit": "Monaco Circuit",
+    "date": "05 - 07 Jun, 2026",
+    "winner": "George Russell",
+    "status": "finished",
+    "dateObj": "2026-06-07T15:00:00Z",
+    "image": "https://media.formula1.com/image/upload/c_lfill,w_64/q_auto/d_common:f1:2026:fallback:driver:2026fallbackdriverright.webp/v1740000001/common/f1/2026/mercedes/andant01/2026mercedesandant01right.webp"
+  },
+  {
+    "id": "barcelona-catalunya",
+    "round": 7,
+    "grandPrix": "Barcelona-catalunya Grand Prix",
+    "circuit": "Barcelona-catalunya Circuit",
+    "date": "12 - 14 Jun, 2026",
+    "winner": "George Russell",
+    "status": "finished",
+    "dateObj": "2026-06-14T15:00:00Z",
+    "image": "https://media.formula1.com/image/upload/c_lfill,w_64/q_auto/d_common:f1:2026:fallback:driver:2026fallbackdriverright.webp/v1740000001/common/f1/2026/ferrari/lewham01/2026ferrarilewham01right.webp"
+  },
+  {
+    "id": "austria",
+    "round": 8,
+    "grandPrix": "FORMULA 1 LENOVO AUSTRIAN GRAND PRIX 2026",
+    "circuit": "Austria Circuit",
+    "date": "26 - 28 Jun, 2026",
+    "winner": "George Russell",
+    "status": "finished",
+    "dateObj": "2026-06-28T15:00:00Z",
+    "image": "https://media.formula1.com/image/upload/c_lfill,w_64/q_auto/d_common:f1:2026:fallback:driver:2026fallbackdriverright.webp/v1740000001/common/f1/2026/mercedes/georus01/2026mercedesgeorus01right.webp"
+  },
+  {
+    "id": "great-britain",
+    "round": 9,
+    "grandPrix": "FORMULA 1 PIRELLI BRITISH GRAND PRIX 2026",
+    "circuit": "Great-britain Circuit",
+    "date": "03 - 05 Jul, 2026",
+    "winner": "Charles Leclerc",
+    "status": "finished",
+    "dateObj": "2026-07-05T15:00:00Z",
+    "image": "https://media.formula1.com/image/upload/c_lfill,w_64/q_auto/d_common:f1:2026:fallback:driver:2026fallbackdriverright.webp/v1740000001/common/f1/2026/ferrari/chalec01/2026ferrarichalec01right.webp"
+  },
+  {
+    "id": "belgium",
+    "round": 10,
+    "grandPrix": "Belgium Grand Prix",
+    "circuit": "Belgium Circuit",
+    "date": "17 - 19 JUL, 2026",
+    "winner": "Kimi Antonelli",
+    "status": "finished",
+    "dateObj": "2026-12-01T15:00:00Z",
+    "image": "https://media.formula1.com/image/upload/c_lfill,w_720/q_auto/v1740000001/fom-website/static-assets/2026/races/card/belgium.webp"
+  },
+  {
+    "id": "hungary",
+    "round": 11,
+    "grandPrix": "Hungary Grand Prix",
+    "circuit": "Hungary Circuit",
+    "date": "24 - 26 JUL, 2026",
+    "winner": null,
+    "status": "upcoming",
+    "dateObj": "2026-12-01T15:00:00Z",
+    "image": "https://media.formula1.com/image/upload/c_lfill,w_1296/q_auto/v1740000001/fom-website/static-assets/2026/races/card/hungary.webp"
+  },
+  {
+    "id": "netherlands",
+    "round": 12,
+    "grandPrix": "Netherlands Grand Prix",
+    "circuit": "Netherlands Circuit",
+    "date": "21 - 23 AUG, 2026",
+    "winner": null,
+    "status": "upcoming",
+    "dateObj": "2026-12-01T15:00:00Z",
+    "image": "https://media.formula1.com/image/upload/c_lfill,w_720/q_auto/v1740000001/fom-website/static-assets/2026/races/card/netherlands.webp"
+  },
+  {
+    "id": "italy",
+    "round": 13,
+    "grandPrix": "Italy Grand Prix",
+    "circuit": "Italy Circuit",
+    "date": "04 - 06 SEP, 2026",
+    "winner": "George Russell",
+    "status": "finished",
+    "dateObj": "2026-12-01T15:00:00Z",
+    "image": "https://media.formula1.com/image/upload/c_lfill,w_720/q_auto/v1740000001/fom-website/static-assets/2026/races/card/italy.webp"
+  },
+  {
+    "id": "spain",
+    "round": 14,
+    "grandPrix": "Spain Grand Prix",
+    "circuit": "Spain Circuit",
+    "date": "11 - 13 Sep, 2026",
+    "winner": "George Russell",
+    "status": "finished",
+    "dateObj": "2026-09-13T15:00:00Z"
+  },
+  {
+    "id": "azerbaijan",
+    "round": 15,
+    "grandPrix": "FORMULA 1 QATAR AIRWAYS AZERBAIJAN GRAND PRIX 2026",
+    "circuit": "Azerbaijan Circuit",
+    "date": "24 - 26 Sep, 2026",
+    "winner": null,
+    "status": "upcoming",
+    "dateObj": "2026-09-26T15:00:00Z"
+  },
+  {
+    "id": "singapore",
+    "round": 16,
+    "grandPrix": "FORMULA 1 SINGAPORE AIRLINES SINGAPORE GRAND PRIX 2026",
+    "circuit": "Singapore Circuit",
+    "date": "09 - 11 Oct, 2026",
+    "winner": null,
+    "status": "upcoming",
+    "dateObj": "2026-10-11T15:00:00Z"
+  },
+  {
+    "id": "united-states",
+    "round": 17,
+    "grandPrix": "FORMULA 1 MSC CRUISES UNITED STATES GRAND PRIX 2026",
+    "circuit": "United-states Circuit",
+    "date": "23 - 25 Oct, 2026",
+    "winner": null,
+    "status": "upcoming",
+    "dateObj": "2026-10-25T15:00:00Z"
+  },
+  {
+    "id": "mexico",
+    "round": 18,
+    "grandPrix": "Mexico Grand Prix",
+    "circuit": "Mexico Circuit",
+    "date": "",
+    "winner": "George Russell",
+    "status": "finished",
+    "dateObj": "2026-12-01T15:00:00Z"
+  },
+  {
+    "id": "brazil",
+    "round": 19,
+    "grandPrix": "Brazil Grand Prix",
+    "circuit": "Brazil Circuit",
+    "date": "06 - 08 Nov, 2026",
+    "winner": "George Russell",
+    "status": "finished",
+    "dateObj": "2026-11-08T15:00:00Z"
+  },
+  {
+    "id": "las-vegas",
+    "round": 20,
+    "grandPrix": "FORMULA 1 HEINEKEN LAS VEGAS GRAND PRIX 2026",
+    "circuit": "Las-vegas Circuit",
+    "date": "19 - 21 Nov, 2026",
+    "winner": null,
+    "status": "upcoming",
+    "dateObj": "2026-11-21T15:00:00Z"
+  },
+  {
+    "id": "qatar",
+    "round": 21,
+    "grandPrix": "FORMULA 1 QATAR AIRWAYS QATAR GRAND PRIX 2026",
+    "circuit": "Qatar Circuit",
+    "date": "27 - 29 Nov, 2026",
+    "winner": null,
+    "status": "upcoming",
+    "dateObj": "2026-11-29T15:00:00Z"
+  },
+  {
+    "id": "united-arab-emirates",
+    "round": 22,
+    "grandPrix": "FORMULA 1 ETIHAD AIRWAYS ABU DHABI GRAND PRIX 2026",
+    "circuit": "United-arab-emirates Circuit",
+    "date": "04 - 06 Dec, 2026",
+    "winner": null,
+    "status": "upcoming",
+    "dateObj": "2026-12-06T15:00:00Z"
+  }
 ];

@@ -77,7 +77,10 @@ const Schedule = () => {
               {race.status === 'upcoming' ? (
                 <div className="status-badge upcoming">Upcoming</div>
               ) : (
-                <div className="status-badge finished"><CheckCircle size={16} /> Finished</div>
+                <div className="status-badge finished" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '4px' }}>
+                  <span><CheckCircle size={16} style={{ verticalAlign: 'text-bottom', marginRight: '4px' }} /> Finished</span>
+                  {race.winner && <span style={{ fontSize: '0.85em', fontWeight: 'bold' }}>{race.winner}</span>}
+                </div>
               )}
             </div>
           </motion.div>
