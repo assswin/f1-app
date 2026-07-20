@@ -1,4 +1,17 @@
 @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Titillium+Web:wght@400;600;700;900&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@theme {
+  --color-background: var(--bg-color);
+  --color-surface: var(--panel-bg);
+  --color-primary: var(--accent-red);
+  --color-border: var(--panel-border);
+  --color-muted: #888888;
+}
 
 :root {
   --bg-color: #050505;
@@ -7,6 +20,34 @@
   --accent-red-glow: rgba(225, 6, 0, 0.4);
   --panel-bg: rgba(25, 25, 30, 0.6);
   --panel-border: rgba(255, 255, 255, 0.08);
+  --f1-muted: #6B7280;
+}
+
+.high-contrast {
+  --f1-muted: #FFFFFF;
+}
+
+/* Scrollbar styling for F1 Replay */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #1e1e2e;
+}
+::-webkit-scrollbar-thumb {
+  background: #3a3a4a;
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #4a4a5a;
+}
+
+@keyframes lapBubbleIn {
+  from { opacity: 0; transform: translateY(-8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.lap-bubble {
+  animation: lapBubbleIn 0.25s ease-out;
 }
 
 * {
@@ -83,6 +124,7 @@ body {
   letter-spacing: 2px;
   margin-bottom: 2rem;
   background: linear-gradient(90deg, #fff, #888);
+  background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   display: inline-block;

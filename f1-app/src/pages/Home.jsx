@@ -53,6 +53,9 @@ const FloatingParticle = ({ size, left, duration, delay: d }) => (
 );
 
 const Home = () => {
+  // Find the first upcoming race, or fallback to the last race if all are finished
+  const nextRace = schedule.find(race => new Date(race.dateObj) > new Date()) || schedule[schedule.length - 1];
+
   /* ── parallax refs ── */
   const heroRef = useRef(null);
   const { scrollYProgress: heroProgress } = useScroll({ target: heroRef, offset: ['start start', 'end start'] });
@@ -145,8 +148,8 @@ const Home = () => {
           </motion.p>
 
           <CountdownTimer 
-            targetDate={schedule[0].dateObj} 
-            eventName={schedule[0].grandPrix} 
+            targetDate={nextRace.dateObj} 
+            eventName={nextRace.grandPrix} 
           />
 
           <motion.div

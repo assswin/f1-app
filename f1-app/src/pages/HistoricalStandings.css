@@ -1,0 +1,152 @@
+.historical-page {
+  padding-top: 120px;
+  padding-bottom: 60px;
+  min-height: 100vh;
+  font-family: 'Titillium Web', sans-serif;
+}
+
+.historical-header {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.historical-header h1 {
+  font-size: 3rem;
+  font-weight: 900;
+  margin-bottom: 10px;
+  color: #fff;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+.historical-header p {
+  color: var(--text-secondary);
+  font-size: 1.2rem;
+  margin-bottom: 30px;
+  font-family: 'Outfit', sans-serif;
+}
+
+.history-list {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.history-card {
+  padding: 0;
+  border-radius: 8px;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  background: #15151e;
+  border: 1px solid #222;
+}
+
+.history-card:hover {
+  border-color: #333;
+}
+
+.history-card-header {
+  display: flex;
+  align-items: center;
+  padding: 20px;
+  cursor: pointer;
+  background: #15151e;
+  border-bottom: 1px solid #222;
+}
+
+.history-card-header:hover {
+  background: #1e1e24;
+}
+
+.history-year {
+  font-size: 1.5rem;
+  font-weight: 900;
+  color: var(--accent-red);
+  width: 80px;
+}
+
+.history-battle {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.champion, .rival {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.champion strong {
+  font-size: 1.1rem;
+  color: #fff;
+  text-transform: uppercase;
+}
+
+.rival span {
+  font-size: 1.1rem;
+  color: #999;
+  text-transform: uppercase;
+}
+
+.vs {
+  font-size: 0.9rem;
+  font-weight: 800;
+  color: rgba(255,255,255,0.3);
+  padding: 0 10px;
+}
+
+.team-badge {
+  font-size: 0.75rem;
+  background: transparent;
+  border: 1px solid #444;
+  padding: 3px 12px;
+  border-radius: 12px;
+  color: #ccc;
+  text-transform: uppercase;
+  font-weight: 600;
+}
+
+.history-toggle {
+  color: var(--accent-red);
+}
+
+.history-details {
+  background: #111;
+}
+
+.history-loading {
+  display: flex;
+  justify-content: center;
+  padding: 30px;
+}
+
+/* History nested table overrides */
+.history-details .standings-table {
+  background: transparent;
+  box-shadow: none;
+  border: none;
+}
+
+.history-details .standings-table th {
+  background: #15151e;
+}
+
+@media (max-width: 768px) {
+  .history-battle {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 5px;
+  }
+  .vs {
+    display: none;
+  }
+  .history-card-header {
+    padding: 15px;
+  }
+  .history-year {
+    width: 60px;
+    font-size: 1.2rem;
+  }
+}
