@@ -257,7 +257,7 @@ const Schedule = () => {
               ) : (
                 <div className="status-badge finished" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '4px' }}>
                   <span><CheckCircle size={16} style={{ verticalAlign: 'text-bottom', marginRight: '4px' }} /> Finished</span>
-                  {race.winner && <span style={{ fontSize: '0.85em', fontWeight: 'bold' }}>{race.winner}</span>}
+                  {race.winner && <span style={{ fontSize: '0.85em', fontWeight: 'bold' }}>Winner: {race.winner}</span>}
                 </div>
               )}
             </div>
@@ -269,4 +269,3 @@ const Schedule = () => {
 };
 
 export default Schedule;
-
