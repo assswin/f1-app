@@ -71,7 +71,7 @@ const Schedule = () => {
             podium = localRace.podium.map((name, i) => ({
               pos: (i + 1).toString(),
               name: name,
-              team: 'Processing API Results...'
+              team: 'yooooooo...'
             }));
           }
 
