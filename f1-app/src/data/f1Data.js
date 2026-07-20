@@ -293,6 +293,7 @@ export const schedule = [
     "status": "upcoming",
     "dateObj": "2026-12-06T15:00:00Z"
   }
+];
 
 // Dynamically compute points for simulated 2026 season
 const pointsSystem = [25, 18, 15, 12, 10, 8, 6, 4, 2, 1];
