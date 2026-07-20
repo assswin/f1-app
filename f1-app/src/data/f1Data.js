@@ -167,7 +167,7 @@ const rawSchedule = [
     "date": "17 - 19 JUL, 2026",
     "winner": "Kimi Antonelli",
     "status": "finished",
-    "dateObj": "2026-12-01T15:00:00Z",
+    "dateObj": "2026-07-19T15:00:00Z",
     "image": "https://media.formula1.com/image/upload/c_lfill,w_720/q_auto/v1740000001/fom-website/static-assets/2026/races/card/belgium.webp"
   },
   {
@@ -178,7 +178,7 @@ const rawSchedule = [
     "date": "24 - 26 JUL, 2026",
     "winner": null,
     "status": "upcoming",
-    "dateObj": "2026-12-01T15:00:00Z",
+    "dateObj": "2026-07-26T15:00:00Z",
     "image": "https://media.formula1.com/image/upload/c_lfill,w_1296/q_auto/v1740000001/fom-website/static-assets/2026/races/card/hungary.webp"
   },
   {
@@ -189,7 +189,7 @@ const rawSchedule = [
     "date": "21 - 23 AUG, 2026",
     "winner": null,
     "status": "upcoming",
-    "dateObj": "2026-12-01T15:00:00Z",
+    "dateObj": "2026-08-23T15:00:00Z",
     "image": "https://media.formula1.com/image/upload/c_lfill,w_720/q_auto/v1740000001/fom-website/static-assets/2026/races/card/netherlands.webp"
   },
   {
@@ -200,7 +200,7 @@ const rawSchedule = [
     "date": "04 - 06 SEP, 2026",
     "winner": "George Russell",
     "status": "finished",
-    "dateObj": "2026-12-01T15:00:00Z",
+    "dateObj": "2026-09-06T15:00:00Z",
     "image": "https://media.formula1.com/image/upload/c_lfill,w_720/q_auto/v1740000001/fom-website/static-assets/2026/races/card/italy.webp"
   },
   {
@@ -252,10 +252,10 @@ const rawSchedule = [
     "round": 18,
     "grandPrix": "Mexico Grand Prix",
     "circuit": "Mexico Circuit",
-    "date": "",
+    "date": "30 Oct - 01 Nov, 2026",
     "winner": "George Russell",
     "status": "finished",
-    "dateObj": "2026-12-01T15:00:00Z",
+    "dateObj": "2026-11-01T15:00:00Z",
     "image": "https://media.formula1.com/image/upload/c_lfill,w_720/q_auto/v1740000001/fom-website/static-assets/2026/races/card/mexico.webp"
   },
   {
