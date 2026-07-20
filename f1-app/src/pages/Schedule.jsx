@@ -2,6 +2,7 @@ import { useRef, useState, useEffect } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { MapPin, Calendar, CheckCircle, Award, ChevronDown, ChevronUp, Clock } from 'lucide-react';
 import { getF1Calendar, getRaceResults } from '../services/api';
+import { schedule as localSchedule } from '../data/f1Data';
 import CountdownTimer from '../components/CountdownTimer';
 import './Schedule.css';
 
@@ -46,25 +47,33 @@ const Schedule = () => {
 
         const mappedSchedule = calendarData.map((race) => {
           const roundStr = race.round.toString();
+          const localRace = localSchedule.find(lr => lr.round === race.round);
           // Find if there are results for this round
           const raceResult = resultsData.find(r => r.round === roundStr);
           
+          const raceDateStr = race.sessions && race.sessions.gp ? race.sessions.gp : null;
+          const raceDateObj = raceDateStr ? new Date(raceDateStr) : new Date();
+          const isPast = raceDateObj < new Date();
+
           let winner = null;
           let podium = [];
-          let status = 'upcoming';
+          let status = isPast ? 'finished' : 'upcoming';
 
           if (raceResult && raceResult.Results && raceResult.Results.length > 0) {
-            status = 'finished';
             winner = `${raceResult.Results[0].Driver.givenName} ${raceResult.Results[0].Driver.familyName}`;
             podium = raceResult.Results.slice(0, 3).map(r => ({
               pos: r.position,
               name: `${r.Driver.givenName} ${r.Driver.familyName}`,
               team: r.Constructor.name
             }));
+          } else if (isPast && localRace && localRace.podium) {
+            winner = localRace.podium[0];
+            podium = localRace.podium.map((name, i) => ({
+              pos: (i + 1).toString(),
+              name: name,
+              team: 'Processing API Results...'
+            }));
           }
-
-          const raceDateStr = race.sessions && race.sessions.gp ? race.sessions.gp : null;
-          const raceDateObj = raceDateStr ? new Date(raceDateStr) : new Date();
 
           return {
             id: race.slug,
@@ -76,7 +85,7 @@ const Schedule = () => {
             status: status,
             winner: winner,
             podium: podium,
-            image: `/assets/tracks/${race.slug}.png`,
+            image: localRace && localRace.image ? localRace.image : `/assets/tracks/${race.slug}.png`,
             sessions: race.sessions ? {
               p1: race.sessions.fp1 ? new Date(race.sessions.fp1) : null,
               p2: race.sessions.fp2 ? new Date(race.sessions.fp2) : null,
