@@ -37,7 +37,7 @@ const rawConstructors = [
   { id: 'haas', name: 'MoneyGram Haas F1 Team', color: '#ffffff', origin: 'Kannapolis, USA', engine: 'Ferrari', description: 'American outfit punching above its weight through crucial technical partnerships.', carImage: '/assets/car/20260210_094432_cf4bbf18.jpg', specs: { topSpeed: 93, downforce: 84, reliability: 85, acceleration: 89 } }
 ];
 
-export const schedule = [
+const rawSchedule = [
   {
     "id": "pre-season-testing-1",
     "round": 0,
@@ -294,6 +294,15 @@ export const schedule = [
     "dateObj": "2026-12-06T15:00:00Z"
   }
 ];
+
+const currentDate = new Date();
+export const schedule = rawSchedule.map(race => {
+  const isPast = new Date(race.dateObj) < currentDate;
+  return {
+    ...race,
+    status: isPast ? 'finished' : 'upcoming'
+  };
+});
 
 // Dynamically compute points for simulated 2026 season
 const pointsSystem = [25, 18, 15, 12, 10, 8, 6, 4, 2, 1];
