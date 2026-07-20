@@ -10,13 +10,45 @@ export const getHistoricalChampions = () => {
 };
 
 /**
- * Fetches the FULL Schedule for a specific year from sportstimes F1Calendar API
+ * Fetches the FULL Schedule for a specific year from OpenF1 API
  */
 export const getF1Calendar = async (year) => {
   try {
-    const res = await fetch(`https://raw.githubusercontent.com/sportstimes/f1/main/_db/f1/${year}.json`);
-    const data = await res.json();
-    return data.races || [];
+    const [meetingsRes, sessionsRes] = await Promise.all([
+      fetch(`https://api.openf1.org/v1/meetings?year=${year}`),
+      fetch(`https://api.openf1.org/v1/sessions?year=${year}`)
+    ]);
+    const meetings = await meetingsRes.json();
+    const sessions = await sessionsRes.json();
+
+    const championshipMeetings = meetings.filter(m => m.meeting_name !== 'Pre-Season Testing');
+
+    return championshipMeetings.map((meeting, index) => {
+      const meetingSessions = sessions.filter(s => s.meeting_key === meeting.meeting_key);
+      const fp1 = meetingSessions.find(s => s.session_name === 'Practice 1');
+      const fp2 = meetingSessions.find(s => s.session_name === 'Practice 2');
+      const fp3 = meetingSessions.find(s => s.session_name === 'Practice 3');
+      const qualifying = meetingSessions.find(s => s.session_name === 'Qualifying');
+      const sprintQualifying = meetingSessions.find(s => s.session_name === 'Sprint Qualifying');
+      const sprint = meetingSessions.find(s => s.session_name === 'Sprint');
+      const gp = meetingSessions.find(s => s.session_name === 'Race');
+
+      return {
+        slug: meeting.meeting_name.toLowerCase().replace(/\s+/g, '-'),
+        round: index + 1,
+        name: meeting.meeting_name,
+        location: meeting.location,
+        sessions: {
+          fp1: fp1 ? fp1.date_start : null,
+          fp2: fp2 ? fp2.date_start : null,
+          fp3: fp3 ? fp3.date_start : null,
+          qualifying: qualifying ? qualifying.date_start : null,
+          sprintQualifying: sprintQualifying ? sprintQualifying.date_start : null,
+          sprint: sprint ? sprint.date_start : null,
+          gp: gp ? gp.date_start : null
+        }
+      };
+    });
   } catch (error) {
     console.error(`Error fetching F1 Calendar for ${year}:`, error);
     return [];

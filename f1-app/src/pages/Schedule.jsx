@@ -78,8 +78,8 @@ const Schedule = () => {
           return {
             id: race.slug,
             round: race.round,
-            grandPrix: race.name + " Grand Prix",
-            circuit: race.location,
+            grandPrix: localRace ? localRace.grandPrix : race.name,
+            circuit: localRace ? localRace.circuit : race.location,
             date: raceDateStr,
             dateObj: raceDateObj,
             status: status,
